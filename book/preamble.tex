@@ -1,10 +1,10 @@
-% ===== ElegantBook customizations for 《深入理解 AI Agent》 =====
+% ===== ElegantBook customizations for the Korean edition =====
 % Accent color comes from ElegantBook's cyan theme: \structurecolor = RGB(31,186,190)
 
 % ── Unicode glyph fallback (Times/Courier lack these) ─────────────
 \usepackage{newunicodechar}
-\IfFontExistsTF{Arial Unicode MS}{\newfontfamily\fallbackfont{Arial Unicode MS}}{\IfFontExistsTF{Noto Sans CJK SC}{\newfontfamily\fallbackfont{Noto Sans CJK SC}}{\newfontfamily\fallbackfont{DejaVu Sans}}}
-\IfFontExistsTF{Heiti SC}{\newunicodechar{★}{{\fontspec{Heiti SC}★}}}{\IfFontExistsTF{Noto Sans CJK SC}{\newunicodechar{★}{{\fontspec{Noto Sans CJK SC}★}}}{\newunicodechar{★}{{\fontspec{DejaVu Sans}★}}}}
+\IfFontExistsTF{Noto Sans CJK KR}{\newfontfamily\fallbackfont{Noto Sans CJK KR}}{\newfontfamily\fallbackfont{Apple SD Gothic Neo}}
+\IfFontExistsTF{Noto Sans CJK KR}{\newunicodechar{★}{{\fontspec{Noto Sans CJK KR}★}}}{\newunicodechar{★}{{\fontspec{Apple SD Gothic Neo}★}}}
 \newunicodechar{✓}{{\fallbackfont ✓}}
 \newunicodechar{✗}{{\fallbackfont ✗}}
 \newunicodechar{₀}{{\fallbackfont ₀}}
@@ -46,7 +46,7 @@
 \newunicodechar{ω}{{\fallbackfont ω}}
 
 % ── Code/monospace font (covers box-drawing glyphs used in code) ──
-\setmonofont[Scale=0.86]{Menlo}
+\IfFontExistsTF{Menlo}{\setmonofont[Scale=0.86]{Menlo}}{\setmonofont[Scale=0.86]{DejaVu Sans Mono}}
 
 % ── tcolorbox (ElegantBook already loads it; just add libraries) ──
 \tcbuselibrary{skins,breakable}
@@ -66,7 +66,7 @@
 % Accent shade for code/figure chrome (follows the theme color above)
 \colorlet{accent}{structurecolor}
 
-% Internal cross-reference links (图N-M / 第N章) — clickable + subtle teal,
+% Internal cross-reference links (그림 N-M / N장) — clickable + subtle teal,
 % independent of the document class's global linkcolor. Used by crossref.lua.
 \newcommand{\crossreflink}[2]{\hyperref[#1]{\textcolor{structurecolor}{#2}}}
 \colorlet{accentbg}{structurecolor!6}
@@ -114,7 +114,7 @@
   colback=accentbg, colframe=accent,
   boxrule=0.8pt, left=0.9em, right=0.9em, top=0.9em, bottom=0.7em,
   arc=1.2mm, before skip=0.9em, after skip=0.9em,
-  title={\sffamily\bfseries 深度思考},
+  title={\sffamily\bfseries 깊이 생각하기},
   fonttitle=\normalsize\color{white},
   coltitle=white,
   attach boxed title to top left={xshift=1em, yshift=-\tcboxedtitleheight/2},
@@ -130,14 +130,8 @@
 
 % ── Figure captions: manual numbering in text, so suppress label ──
 \usepackage{caption}
-% Captions apply \sffamily, which switches Chinese to a CJK sans (Heiti SC).
-% The earlier fix used Scale=MatchLowercase, which scales CJK down to the Latin
-% x-height — wrong for Chinese, whose glyphs should sit at the nominal point
-% size (as they do in the body, which is why the body looks fine and only
-% captions were off). Render Heiti SC at nominal size (no MatchLowercase) with a
-% faux bold, so 中文 matches the Latin in captions. Injected into captions only;
-% headings and body are untouched.
-\IfFontExistsTF{Heiti SC}{\setCJKfamilyfont{capcjksf}[AutoFakeBold=2.5]{Heiti SC}}{\IfFontExistsTF{Noto Sans CJK SC}{\setCJKfamilyfont{capcjksf}[AutoFakeBold=2.5]{Noto Sans CJK SC}}{\setCJKfamilyfont{capcjksf}[AutoFakeBold=2.5]{DejaVu Sans}}}
+% Render Korean captions with a native CJK sans font at nominal size.
+\IfFontExistsTF{Noto Sans CJK KR}{\setCJKfamilyfont{capcjksf}[AutoFakeBold=2.5]{Noto Sans CJK KR}}{\setCJKfamilyfont{capcjksf}[AutoFakeBold=2.5]{Apple SD Gothic Neo}}
 \DeclareCaptionFont{cjkmatch}{\CJKfamily{capcjksf}}
 \captionsetup{font={normalsize,sf,bf,cjkmatch}, labelformat=empty, skip=4pt, justification=centering}
 
@@ -157,17 +151,23 @@
 % ── Inline code: keep it tight ───────────────────────────────────
 \setlength{\parindent}{2em}
 
-% 正文中文字体：本地 macOS 用 Songti SC / Heiti SC；CI（无 Apple 字体）用 Noto Sans CJK SC。
-% fontset=none 由 build_pdf.sh 传入，避免 ctex 自动选择已被移除的 ST 系列旧字体。
-\IfFontExistsTF{Songti SC}{%
-  \setCJKmainfont[AutoFakeBold=2.5]{Songti SC}%
-  \setCJKsansfont[AutoFakeBold=2.5]{Heiti SC}%
-  \setCJKmonofont[AutoFakeBold=2.5]{Songti SC}%
+% Korean body fonts: Noto CJK KR in CI, macOS system fonts as fallback.
+\IfFontExistsTF{Noto Serif CJK KR}{%
+  \setCJKmainfont[AutoFakeBold=2.5]{Noto Serif CJK KR}%
+  \setCJKsansfont[AutoFakeBold=2.5]{Noto Sans CJK KR}%
+  \setCJKmonofont[AutoFakeBold=2.5]{Noto Sans CJK KR}%
 }{%
-  \setCJKmainfont[AutoFakeBold=2.5]{Noto Sans CJK SC}%
-  \setCJKsansfont[AutoFakeBold=2.5]{Noto Sans CJK SC}%
-  \setCJKmonofont[AutoFakeBold=2.5]{Noto Sans CJK SC}%
+  \setCJKmainfont[AutoFakeBold=2.5]{AppleMyungjo}%
+  \setCJKsansfont[AutoFakeBold=2.5]{Apple SD Gothic Neo}%
+  \setCJKmonofont[AutoFakeBold=2.5]{Apple SD Gothic Neo}%
 }
+
+% Korean structural labels.
+\renewcommand{\contentsname}{목차}
+\renewcommand{\figurename}{그림}
+\renewcommand{\tablename}{표}
+\renewcommand{\bibname}{참고문헌}
+\ctexset{chapter={name={제,장}}}
 
 % ElegantBook empties the `plain` page style used on chapter-opening pages.
 % Keep those pages numbered, matching the centered footer on regular pages.

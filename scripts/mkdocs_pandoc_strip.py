@@ -3,9 +3,9 @@
 The book source uses Pandoc/LaTeX attributes that Python-Markdown does not
 understand and would otherwise render as literal text:
 
-    ## 标题 {.unnumbered}        ->  ## 标题
-    ![图](x.svg){height=55%}     ->  ![图](x.svg)
-    [文本](#sec:foo){.unnumbered}
+    ## 제목 {.unnumbered}        ->  ## 제목
+    ![그림](x.svg){height=55%}   ->  ![그림](x.svg)
+    [텍스트](#sec:foo){.unnumbered}
 """
 import re
 

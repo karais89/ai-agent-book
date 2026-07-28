@@ -1,22 +1,22 @@
-# 第 1 章 · Agent 基础知识
+# 1장 · AI 에이전트 기초
 
-> **Agent = LLM + 上下文 + 工具**；Harness 工程才是竞争力
+> ‘모델을 에이전트로(Model as Agent)’라는 새로운 패러다임에서 출발해 **에이전트 = LLM + 컨텍스트 + 도구**라는 핵심 공식을 세우고, 모델 바깥의 모든 엔지니어링 역량이 진정한 경쟁력이라는 하네스 엔지니어링을 소개한다.
 
-← [返回主目录](../README.md) · 📖 [读本章正文](../book/chapter1.md)
+← [메인 README로 돌아가기](../README.md) · 📖 [장 본문 읽기](../book/chapter1.md)
 
-## 配套项目
+## 부속 프로젝트
 
-| 编号 | 项目 | 类型 | 一句话说明 |
+| 실험 | 프로젝트 | 유형 | 설명 |
 | :--: | --- | :--: | --- |
-| 1-1 | [context](context/) | ✅ | 系统性消融实验展示 Agent 上下文各组件的重要性；支持 SiliconFlow Qwen、字节 Doubao、月之暗面 Kimi 等多提供商 |
-| 1-2 | [web-search-agent](web-search-agent/) | ✅ | Kimi K3 模型即 Agent，具备基础深度搜索能力，能进行多轮搜索和信息整合 |
-| 1-3 | [search-codegen](search-codegen/) | ✅ | GPT-5 原生工具集成，综合利用网络搜索与代码沙盒实现复杂分析 |
-| 7-1, 7-2 | [learning-from-experience](learning-from-experience/) | ✅ | 对比 Q-learning 与基于 LLM 的上下文学习，复现 Shunyu Yao 的 "The Second Half"：LLM 以 250–400 倍样本效率超越传统 RL |
+| 1-1 | [context](context/) | ✅ | 체계적인 제거 실험을 통해 에이전트 컨텍스트를 구성하는 여러 요소의 중요성을 보여 준다. 여러 LLM 제공자(SiliconFlow Qwen, ByteDance Doubao, Moonshot Kimi)를 지원하며, 서로 다른 컨텍스트 모드를 설정해 에이전트의 행동 변화를 관찰할 수 있다. |
+| 1-2 | [web-search-agent](web-search-agent/) | ✅ | 여러 차례 검색하고 정보를 통합할 수 있는 기본적인 심층 검색 에이전트를 구현한다. |
+| 1-3 | [search-codegen](search-codegen/) | ✅ | 웹 검색과 코드 실행 같은 도구를 사용해 복잡한 분석을 수행할 수 있도록 기본 심층 검색 및 코드 샌드박스 기능을 갖춘 에이전트를 만든다. |
+| 7-1, 7-2 | [learning-from-experience](learning-from-experience/) | ✅ | 전통적 강화 학습(Q-learning)과 LLM 기반 인컨텍스트 학습을 비교하여 Shunyu Yao의 글 “The Second Half”의 핵심 통찰을 재현한다. 보물찾기 게임을 통해 LLM이 전통적 강화 학습보다 250~400배 높은 샘플 효율을 보일 수 있음을 보여 준다. |
 
-## 项目类型说明
+## 프로젝트 유형
 
-| 图标 | 类型 | 含义 |
+| 아이콘 | 유형 | 의미 |
 | :--: | --- | --- |
-| ✅ | **可独立运行** | 本仓库自带完整代码，配置好 API Key 即可运行 |
-| 📖 | **复现指南** | 依赖需自行 `git clone` 的**外部仓库**（训练框架、评测基准等） |
-| 🚧 | **设计文档** | 仅包含架构与实现方案，可运行代码仍在完善中 |
+| ✅ | **독립 실행형** | 전체 코드가 이 저장소에 있으며 API 키를 설정하면 실행 가능 |
+| 📖 | **재현 안내서** | 별도로 `git clone`해야 하는 **외부 저장소** 기반의 상세 문서 |
+| 🚧 | **설계 문서** | 아키텍처·구현 계획만 있으며 실행 코드 작업 진행 중 |

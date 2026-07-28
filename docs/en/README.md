@@ -1,45 +1,39 @@
 # AI Agents in Depth: Design Principles and Engineering Practice
 
-[![PDF](https://img.shields.io/badge/PDF-download-success.svg)](#-e-book) [![Read online](https://img.shields.io/badge/🌐_Read_online-bojieli.github.io-success?style=flat-square)](https://bojieli.github.io/ai-agent-book/) [![Stars](https://img.shields.io/github/stars/bojieli/ai-agent-book?style=social)](https://github.com/bojieli/ai-agent-book) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](../../LICENSE) [![Languages](https://img.shields.io/badge/translations-8%20languages-informational.svg)](#-e-book)
+[![PDF](https://img.shields.io/badge/PDF-download-success.svg)](#-e-book) [![Read online](https://img.shields.io/badge/🌐_Read_online-karais89.github.io-success?style=flat-square)](https://karais89.github.io/ai-agent-book/) [![Stars](https://img.shields.io/github/stars/karais89/ai-agent-book?style=social)](https://github.com/karais89/ai-agent-book) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](../../LICENSE) [![Languages](https://img.shields.io/badge/languages-Korean%20%7C%20English-informational.svg)](#-e-book)
 
-**[中文](../../README.md) · English ← current · [العربية](../ar/README.md) · [正體中文](../zh-TW/README.md) · [Русский](../ru/README.md) · [Tiếng Việt](../vi/README.md) · [தமிழ்](../ta/README.md) · [日本語](../ja/README.md)**
+**[한국어](../../README.md) · English ← current**
 
-> 📥 **[Download PDF / EPUB](#-e-book)** (recommended) — the PDF / EPUB editions offer the best reading experience; you can also [read online](https://bojieli.github.io/ai-agent-book/) (multi-language switcher, collapsible chapter tree, full-text search, auto-rebuilt on every push to main).
+> 📥 **[Download PDF / EPUB](#-e-book)** (recommended) — the PDF / EPUB editions offer the best reading experience; you can also [read online](https://karais89.github.io/ai-agent-book/) (Korean/English switcher, collapsible chapter tree, full-text search, auto-rebuilt on every push to main).
 
-**Agent = LLM + Context + Tools** — This book builds on this core formula across 10 chapters, taking AI Agents from principles to engineering practice. The full text, illustrations, and **92 accompanying experiments** are all open source. You are welcome to run the experiments yourself.
+**Agent = LLM + Context + Tools** — This book builds on this core formula across 10 chapters, taking AI Agents from principles to engineering practice. The full text, illustrations, and **93 accompanying experiments** are all open source. You are welcome to run the experiments yourself.
 
-| 📚 **10 chapters** of text, from basics to production | 📂 **92** companion projects (70+ standalone) | 🌐 **8 languages**: CN / EN / AR / zh-TW / RU / TA / VI / JA |
+| 📚 **10 chapters** of text, from basics to production | 📂 **93** companion projects (70+ standalone) | 🌐 **Korean and English** |
 | :---: | :---: | :---: |
 
 ## 📖 E-Book
 
-> 📥 **Download** (recommended; full text, free and open source). These links always point to the latest build of the `main` branch; fixed editions are on the [Releases](https://github.com/bojieli/ai-agent-book/releases) page:
-> - **Chinese (original)**: [PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-zh-CN.pdf) · [EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-zh-CN.epub)
-> - **English** (community translation, by [@nsdevaraj](https://github.com/nsdevaraj) and [@whanyu1212](https://github.com/whanyu1212)): [PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-en.pdf) · [EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-en.epub)
-> - **Traditional Chinese (Taiwan)** (community translation, by [@tigercosmos](https://github.com/tigercosmos)): [PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-zh-TW.pdf) · [EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-zh-TW.epub)
-> - **Russian** (community translation, by [@ui99ru](https://github.com/ui99ru)): [PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ru.pdf) · [EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ru.epub)
-> - **Tamil** (community translation, by [@nsdevaraj](https://github.com/nsdevaraj)): [PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ta.pdf) · [EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ta.epub)
-> - **Vietnamese** (community translation, by [@toanalien](https://github.com/toanalien)): [PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-vi.pdf) · [EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-vi.epub)
-> - **Japanese** (community translation, by [@eltociear](https://github.com/eltociear)): [PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ja.pdf) · [EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ja.epub)
-> - **Arabic** (community translation): [PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ar.pdf) · [EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ar.epub)
+> 📥 **Download** (recommended; full text, free and open source). These links always point to the latest build of the `main` branch; fixed editions are on the [Releases](https://github.com/karais89/ai-agent-book/releases) page:
+> - **Korean**: [PDF](https://github.com/karais89/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ko.pdf) · [EPUB](https://github.com/karais89/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ko.epub)
+> - **English** (community translation, by [@nsdevaraj](https://github.com/nsdevaraj) and [@whanyu1212](https://github.com/whanyu1212)): [PDF](https://github.com/karais89/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-en.pdf) · [EPUB](https://github.com/karais89/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-en.epub)
 >
-> 🌐 You can also [read online](https://bojieli.github.io/ai-agent-book/) — multi-language switcher, collapsible chapter tree, full-text search, and direct links to companion experiments. Auto-rebuilt on every push to main.
+> 🌐 You can also [read online](https://karais89.github.io/ai-agent-book/) — Korean/English switcher, collapsible chapter tree, full-text search, and direct links to companion experiments. Auto-rebuilt on every push to main.
 
-Chinese text source is in [`book/`](../../book/); English/Arabic/Traditional Chinese (Taiwan)/Russian/Tamil/Vietnamese/Japanese versions are community contributions (may lag behind the Chinese original), located in [`book-en/`](../../book-en/), [`book-ar/`](../../book-ar/), [`book-zhtw/`](../../book-zhtw/), [`book-ru/`](../../book-ru/), [`book-ta/`](../../book-ta/), [`book-vi/`](../../book-vi/), [`book-ja/`](../../book-ja/) respectively.
+The Korean text source is in [`book/`](../../book/), and the preserved English edition is in [`book-en/`](../../book-en/).
 
-The shared builder produces EPUB 3 editions for Simplified Chinese, English, Arabic, Traditional Chinese (Taiwan), Russian, Tamil, Vietnamese, and Japanese. See the [EPUB build instructions](../../EPUB.md).
+The shared builder produces Korean and English EPUB 3 editions. See the [EPUB build instructions](../../EPUB.md).
 
 <details>
 <summary><b>🔧 Build the PDF yourself?</b> (requires pandoc / xelatex / ElegantBook)</summary>
 
-- **Text source**: `book/introduction.md` (intro), `book/chapter1.md` ~ `book/chapter10.md` (Chapters 1–10), `book/afterword.md` (afterword)
+- **Text source**: `book-en/introduction.md` (intro), `book-en/chapter1.md` ~ `book-en/chapter10.md` (Chapters 1–10), `book-en/afterword.md` (afterword), and `book-en/reference-answers.md`
 - **Build**: Install pandoc, xelatex, ElegantBook document class and required fonts, then run
 
   ```bash
-  cd book && bash build_pdf.sh
+  cd book-en && bash build_pdf.sh
   ```
 
-  Figures are stored as SVG files in `book/images/` and used directly by the build; see `book/preamble.tex` and `book/*.lua` for typography details.
+  Figures are stored as SVG files in `book-en/images/` and used directly by the build; see `book-en/preamble.tex` and `book-en/*.lua` for typography details.
 
 </details>
 
@@ -54,7 +48,7 @@ The book revolves around the core formula **Agent = LLM + Context + Tools**, wit
 | 3 | 📚 **User Memory & Knowledge Bases** | Cross-session user memory + external knowledge: user memory, RAG, structured indexes, knowledge graphs | [Read](../../book-en/chapter3.md) | [13](../../chapter3/README.en.md) |
 | 4 | 🛠️ **Tools** | Tools are the Agent's hands: MCP protocol, perception/execution/collaboration tools, event-driven async Agents, proactive tool discovery | [Read](../../book-en/chapter4.md) | [7](../../chapter4/README.en.md) |
 | 5 | 💻 **Coding Agent & Code Generation** | Code is a "tool that creates new tools"; production-grade Coding Agent in full | [Read](../../book-en/chapter5.md) | [12](../../chapter5/README.en.md) |
-| 6 | 🎯 **Agent Evaluation** | Turn performance into comparable signals: environments, metrics, statistical significance, evaluation-driven selection | [Read](../../book-en/chapter6.md) | [11](../../chapter6/README.en.md) |
+| 6 | 🎯 **Agent Evaluation** | Turn performance into comparable signals: environments, metrics, statistical significance, evaluation-driven selection | [Read](../../book-en/chapter6.md) | [12](../../chapter6/README.en.md) |
 | 7 | 🧠 **Model Post-Training** | Pre-training/SFT/RL three stages: when to choose SFT vs. RL, internalizing tool calls, sample efficiency | [Read](../../book-en/chapter7.md) | [16](../../chapter7/README.en.md) |
 | 8 | 🔄 **Agent Self-Evolution** | Growth without changing weights: learning from experience, from tool user to tool creator | [Read](../../book-en/chapter8.md) | [6](../../chapter8/README.en.md) |
 | 9 | 🎙️ **Multimodal & Real-Time Interaction** | Extending from text to voice, GUI, physical world: three voice paradigms, Computer Use, robotics | [Read](../../book-en/chapter9.md) | [7](../../chapter9/README.en.md) |
@@ -145,11 +139,10 @@ The book and accompanying code are fully open source. Pull Requests are very wel
 
 | Type | Notes |
 | --- | --- |
-| 📝 **Book content** | Errata, additions, clearer wording, or new developments (text in `book/chapter*.md`) |
+| 📝 **Book content** | Errata, additions, clearer wording, or new developments (text in `book-en/chapter*.md`) |
 | 🐛 **Code improvements & bug fixes** | Make companion projects more robust, usable, and production-ready |
 | 🧪 **New practice projects** | Add/replace better implementations for experiments, or contribute new examples |
-| 🎨 **Figure design** | Directly improve the checked-in SVG charts under `book/images/` |
-| 🌐 **New translations** | Translations into more languages are welcome; see English (`book-en/`), Traditional Chinese/Taiwan (`book-zhtw/`), Tamil (`book-ta/`), Vietnamese (`book-vi/`), Japanese (`book-ja/`) for reference |
+| 🎨 **Figure design** | Directly improve the checked-in SVG charts under `book-en/images/` |
 
 Before submitting, please run the relevant experiments to confirm reproducibility; feel free to open an issue to discuss ideas first.
 
@@ -159,7 +152,7 @@ This project is licensed under [Apache License 2.0](../../LICENSE). See the [`LI
 
 ## ⭐ Star History
 
-<a href="https://star-history.com/#bojieli/ai-agent-book&Date">
+<a href="https://star-history.com/#karais89/ai-agent-book&Date">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="../../assets/star-history-dark.png" />
     <source media="(prefers-color-scheme: light)" srcset="../../assets/star-history-light.png" />

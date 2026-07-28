@@ -10,7 +10,7 @@
  *       <a href="…/chapterN/">chapter title</a>   ← navigates
  *       <label for="__nav_N">chevron</label>      ← toggles
  *     </div>
- *     <nav class="md-nav">…配套实验…</nav>
+ *     <nav class="md-nav">…부속 실험…</nav>
  *   </li>
  *
  * Material only honours the checkbox on mobile; on desktop the section
@@ -123,7 +123,10 @@
 
     var button = document.querySelector("[data-sidebar-toggle]");
     if (button) {
-      var label = collapsed ? "展开侧边栏" : "隐藏侧边栏";
+      var isEnglish = document.documentElement.lang === "en";
+      var label = collapsed
+        ? (isEnglish ? "Show sidebar" : "사이드바 펼치기")
+        : (isEnglish ? "Hide sidebar" : "사이드바 숨기기");
       button.setAttribute("aria-expanded", String(!collapsed));
       button.setAttribute("aria-label", label);
       button.setAttribute("title", label);

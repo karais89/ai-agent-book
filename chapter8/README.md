@@ -1,33 +1,33 @@
-# 第 8 章 · Agent 的持续进化
+# 8장 · 에이전트의 지속적 진화
 
-> 从运行轨迹中获得可靠信号，把经验转化为可验证、可回滚的能力更新
+> 운영 궤적에서 신뢰할 수 있는 학습 신호를 얻고, 이를 지식·지침·프로그램·모델 매개변수에 반영하는 네 가지 진화 방식을 살펴본다. ‘도구 사용자’에서 ‘도구 제작자’로 나아가며 에이전트가 ‘똑똑함’에서 ‘숙련됨’으로 발전하는 과정을 다룬다.
 
-← [返回主目录](../README.md) · 📖 [读本章正文](../book/chapter8.md)
+← [메인 README로 돌아가기](../README.md) · 📖 [장 본문 읽기](../book/chapter8.md)
 
-## 配套实验
+## 부속 프로젝트
 
-| 编号 | 项目 | 类型 | 一句话说明 |
+| 실험 | 프로젝트 | 유형 | 설명 |
 | :--: | --- | :--: | --- |
-| 8-1 | [trajectory-verifier](trajectory-verifier/) | ✅ | 实验 8-1：用环境结果、过程规则和语言 Rubric 形成带证据的客服轨迹诊断 |
-| 8-2 | [gaia-experience](gaia-experience/) | ✅ | 实验 8-2：比较成功、部分成功与失败轨迹，生成跨轨迹 Markdown 经验文档 |
-| 8-3 | [prompt-auto-optimization](prompt-auto-optimization/) | ✅ | 实验 8-3：从失败轨迹生成最小 Prompt 补丁，并以边界集和保留集控制发布 |
-| 8-4 | [browser-use-rpa](browser-use-rpa/) | ✅ | 实验 8-4：把浏览器轨迹编译为带状态谓词、经重置回放验证的工作流 |
-| 8-5 | [self-modifying-agent](self-modifying-agent/) | ✅ | 实验 8-5：由重复故障触发重试/熔断代码补丁、回归、灰度与回滚 |
-| 8-6 | [self-evolution-eval](self-evolution-eval/) | ✅ | 实验 8-6：用学习、迁移、规则变化和保持四阶段评估长期进化 |
+| 8-1 | [trajectory-verifier](trajectory-verifier/) | ✅ | 환경 결과, 과정 규칙, 언어 루브릭을 결합해 고객 서비스 궤적을 근거 기반으로 진단한다. |
+| 8-2 | [gaia-experience](gaia-experience/) | ✅ | 성공, 부분 성공, 실패 궤적을 비교해 여러 궤적에 공통으로 적용할 Markdown 경험 문서를 생성한다. |
+| 8-3 | [prompt-auto-optimization](prompt-auto-optimization/) | ✅ | 실패 궤적에서 최소 프롬프트 패치를 만들고 경계 집합과 유지 집합으로 출시를 통제한다. |
+| 8-4 | [browser-use-rpa](browser-use-rpa/) | ✅ | 브라우저 궤적을 상태 술어가 포함된 워크플로로 컴파일하고 초기화 후 재생으로 검증한다. |
+| 8-5 | [self-modifying-agent](self-modifying-agent/) | ✅ | 반복 실패가 재시도·회로 차단기 코드 패치, 회귀 테스트, 카나리 출시, 롤백을 촉발하도록 한다. |
+| 8-6 | [self-evolution-eval](self-evolution-eval/) | ✅ | 학습, 전이, 규칙 변경, 유지라는 네 단계에서 장기적 진화를 평가한다. |
 
-以上实验都提供无需 API Key 的离线入口和单元测试；需要真实模型或浏览器的扩展路径在各项目 README 中另行说明。
+위 실험은 모두 API 키 없이 실행할 수 있는 오프라인 진입점과 단위 테스트를 제공한다. 실제 모델이나 브라우저가 필요한 확장 경로는 각 프로젝트의 README에 설명되어 있다.
 
-## 补充案例
+## 보충 사례
 
-| 编号 | 项目 | 关系 |
+| 실험 | 프로젝트 | 관계 |
 | :--: | --- | --- |
-| 7-8 | [prompt-distillation](prompt-distillation/) | Prompt 蒸馏与参数化学习的跨章项目；训练方法归入第七章 |
-| — | [self-evolving-tools](self-evolving-tools/) | Alita 式工具发现、封装与复用，是“将经验写成程序”的补充案例 |
+| 7-8 | [prompt-distillation](prompt-distillation/) | 프롬프트 증류와 매개변수 학습을 다루는 장 간 연계 프로젝트이며, 학습 방법은 7장에 속한다. |
+| — | [self-evolving-tools](self-evolving-tools/) | Alita 방식의 도구 탐색·캡슐화·재사용을 보여 주는 ‘경험을 프로그램에 기록하기’의 보충 사례다. |
 
-## 项目类型说明
+## 프로젝트 유형
 
-| 图标 | 类型 | 含义 |
+| 아이콘 | 유형 | 의미 |
 | :--: | --- | --- |
-| ✅ | **可独立运行** | 本仓库自带完整代码，配置好 API Key 即可运行 |
-| 📖 | **复现指南** | 依赖需自行 `git clone` 的**外部仓库**（训练框架、评测基准等） |
-| 🚧 | **设计文档** | 仅包含架构与实现方案，可运行代码仍在完善中 |
+| ✅ | **독립 실행형** | 전체 코드가 이 저장소에 있으며 API 키를 설정하면 실행 가능 |
+| 📖 | **재현 안내서** | 별도로 `git clone`해야 하는 **외부 저장소** 기반의 상세 문서 |
+| 🚧 | **설계 문서** | 아키텍처·구현 계획만 있으며 실행 코드 작업 진행 중 |

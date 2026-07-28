@@ -1,24 +1,24 @@
 ---
-title: 深入理解 AI Agent
-description: 围绕核心公式 Agent = LLM + 上下文 + 工具,用 10 章把 AI Agent 从原理讲到工程实战的开源技术书。正文、配图、92 个配套实验全部开源。
+title: AI 에이전트 깊이 이해하기
+description: 에이전트 = LLM + 컨텍스트 + 도구라는 핵심 공식에서 출발해 AI 에이전트의 원리부터 엔지니어링 실무까지 10개 장으로 설명하는 오픈 소스 기술서입니다. 본문, 그림, 93개 실습을 모두 공개합니다.
 ---
 
 <div class="hero" markdown>
 
-# 深入理解 AI Agent
+# AI 에이전트 깊이 이해하기
 
-**设计原理与工程实践** · 一本完整开源的 AI Agent 技术书
+**설계 원리와 엔지니어링 실무** · 완전한 오픈 소스 AI 에이전트 기술서
 
 <div class="hero-formula" markdown>
 
-`Agent = LLM + 上下文 + 工具`
+`에이전트 = LLM + 컨텍스트 + 도구`
 
 </div>
 
 <div class="cta-row" markdown>
 
-📥 [中文 PDF](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-zh-CN.pdf){.cta}
-📚 [中文 EPUB](https://github.com/bojieli/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-zh-CN.epub){.cta}
+📥 [한국어 PDF](https://github.com/karais89/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ko.pdf){.cta}
+📚 [한국어 EPUB](https://github.com/karais89/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ko.epub){.cta}
 
 </div>
 
@@ -26,88 +26,88 @@ description: 围绕核心公式 Agent = LLM + 上下文 + 工具,用 10 章把 A
 
 ---
 
-## 章节速览
+## 장별 미리보기
 
 <div class="exp-grid" markdown>
 
 <a class="exp-card" href="book/introduction/">
-<span class="exp-title">📖 引言</span>
-<span class="exp-desc">为什么写这本书 · 好的设计原则如何穿越模型迭代周期</span>
+<span class="exp-title">📖 들어가며</span>
+<span class="exp-desc">이 책을 쓴 이유 · 좋은 설계 원리가 모델의 세대교체를 넘어 살아남는 방식</span>
 </a>
 
 <a class="exp-card" href="book/chapter1/">
-<span class="exp-title">🚀 第 1 章 · Agent 基础知识</span>
-<span class="exp-desc">Agent = LLM + 上下文 + 工具；Harness 工程才是竞争力</span>
+<span class="exp-title">🚀 1장 · AI 에이전트 기초</span>
+<span class="exp-desc">에이전트 = LLM + 컨텍스트 + 도구 · 경쟁력의 핵심인 하네스 엔지니어링</span>
 </a>
 
 <a class="exp-card" href="book/chapter2/">
-<span class="exp-title">🎯 第 2 章 · 上下文工程</span>
-<span class="exp-desc">上下文决定能力上限:KV Cache、提示工程、Agent Skills、上下文压缩</span>
+<span class="exp-title">🎯 2장 · 컨텍스트 엔지니어링</span>
+<span class="exp-desc">능력의 상한을 정하는 컨텍스트: KV 캐시, 프롬프트 엔지니어링, 에이전트 스킬, 컨텍스트 압축</span>
 </a>
 
 <a class="exp-card" href="book/chapter3/">
-<span class="exp-title">📚 第 3 章 · 用户记忆和知识库</span>
-<span class="exp-desc">跨会话记住用户、接入外部知识:用户记忆、RAG、结构化索引、知识图谱</span>
+<span class="exp-title">📚 3장 · 사용자 메모리와 지식 베이스</span>
+<span class="exp-desc">세션을 넘어 사용자를 기억하고 외부 지식을 연결하는 메모리, RAG, 구조화 인덱스, 지식 그래프</span>
 </a>
 
 <a class="exp-card" href="book/chapter4/">
-<span class="exp-title">🛠️ 第 4 章 · 工具</span>
-<span class="exp-desc">工具是 Agent 的双手:MCP 协议、感知/执行/协作三类工具、异步 Agent</span>
+<span class="exp-title">🛠️ 4장 · 도구</span>
+<span class="exp-desc">에이전트의 손발인 도구: MCP, 인식·실행·협업 도구, 비동기 에이전트</span>
 </a>
 
 <a class="exp-card" href="book/chapter5/">
-<span class="exp-title">💻 第 5 章 · Coding Agent 与代码生成</span>
-<span class="exp-desc">代码是「能创造新工具的工具」,生产级 Coding Agent 全景</span>
+<span class="exp-title">💻 5장 · 코딩 에이전트와 코드 생성</span>
+<span class="exp-desc">새 도구를 만드는 도구인 코드 · 프로덕션급 코딩 에이전트의 전체 구조</span>
 </a>
 
 <a class="exp-card" href="book/chapter6/">
-<span class="exp-title">🎯 第 6 章 · Agent 的评估</span>
-<span class="exp-desc">把表现变成可比较信号:评估环境、指标、统计显著性</span>
+<span class="exp-title">🎯 6장 · 에이전트 평가</span>
+<span class="exp-desc">성능을 비교 가능한 신호로 바꾸는 평가 환경, 지표, 통계적 유의성</span>
 </a>
 
 <a class="exp-card" href="book/chapter7/">
-<span class="exp-title">🧠 第 7 章 · 模型后训练</span>
-<span class="exp-desc">SFT、强化学习——把 Harness 中积累的反馈信号写入模型参数</span>
+<span class="exp-title">🧠 7장 · 모델 사후 학습</span>
+<span class="exp-desc">SFT와 강화 학습으로 하네스에서 축적한 피드백을 모델 매개변수에 반영하기</span>
 </a>
 
 <a class="exp-card" href="book/chapter8/">
-<span class="exp-title">🌱 第 8 章 · Agent 的持续进化</span>
-<span class="exp-desc">从可靠学习信号到知识、指令、程序与参数更新</span>
+<span class="exp-title">🌱 8장 · 에이전트의 지속적 진화</span>
+<span class="exp-desc">신뢰할 수 있는 학습 신호에서 지식, 지침, 프로그램, 매개변수 업데이트까지</span>
 </a>
 
 <a class="exp-card" href="book/chapter9/">
-<span class="exp-title">🎙️ 第 9 章 · 多模态与实时交互</span>
-<span class="exp-desc">语音 Agent、Computer Use、机器人操作</span>
+<span class="exp-title">🎙️ 9장 · 멀티모달과 실시간 상호작용</span>
+<span class="exp-desc">음성 에이전트, 컴퓨터 사용(Computer Use), 로봇 조작</span>
 </a>
 
 <a class="exp-card" href="book/chapter10/">
-<span class="exp-title">🤝 第 10 章 · 多 Agent 协作</span>
-<span class="exp-desc">协作架构、失败模式、Agent 社会</span>
+<span class="exp-title">🤝 10장 · 멀티 에이전트 협업</span>
+<span class="exp-desc">협업 아키텍처, 실패 모드, 에이전트 사회</span>
 </a>
 
 <a class="exp-card" href="book/afterword/">
-<span class="exp-title">📝 后记</span>
-<span class="exp-desc">模型会不会吃掉 Harness?完整答案与展望</span>
+<span class="exp-title">📝 맺음말</span>
+<span class="exp-desc">모델이 하네스를 흡수할 수 있을까? 전체 답변과 전망</span>
 </a>
 
 </div>
 
 ---
 
-## 在线阅读 · 多语言
+## 온라인 읽기 · 한국어와 영어
 
-使用顶部导航栏的语言 Tab 切换:
+상단의 언어 선택 메뉴에서 판본을 전환할 수 있다.
 
-| 中文 | 正體中文 | English | العربية | Русский | தமிழ் | Tiếng Việt | 日本語 |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| ✅ 原版 | 社区翻译 | 社区翻译 | 社区翻译 | 社区翻译 | 社区翻译 | 社区翻译 | 社区翻译 |
+| 한국어 | English |
+| :---: | :---: |
+| ✅ 기본판 | 영어판 |
 
 ---
 
-## 关于
+## 프로젝트 정보
 
-- **仓库**:[bojieli/ai-agent-book](https://github.com/bojieli/ai-agent-book)
-- **许可证**:Apache License 2.0
-- **本站点**:每次仓库推送后由 GitHub Actions 自动重新构建
+- **저장소**: [karais89/ai-agent-book](https://github.com/karais89/ai-agent-book)
+- **라이선스**: Apache License 2.0
+- **사이트 갱신**: 저장소에 변경 사항을 푸시할 때마다 GitHub Actions가 자동으로 다시 빌드한다.
 
-> 💡 本书内容持续更新,本站点在每次仓库推送后由 GitHub Actions 自动重新构建。如需下载完整 PDF,请使用上方下载按钮或访问 [Releases](https://github.com/bojieli/ai-agent-book/releases)。
+> 💡 책은 계속 업데이트된다. 완성된 PDF와 EPUB은 위의 다운로드 버튼이나 [Releases](https://github.com/karais89/ai-agent-book/releases)에서 받을 수 있다.

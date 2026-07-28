@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build the complete book as a single PDF (ElegantBook design, teal/cyan theme).
 # Requirements: pandoc, xelatex, ElegantBook class, rsvg-convert (librsvg),
-#               fonts: Songti SC / Heiti SC (ctex), Menlo, Arial Unicode MS
+#               Noto Serif/Sans CJK KR (or the macOS Korean system fonts)
 # Usage: cd book && bash build_pdf.sh
 # Note: chapter/section numbers come from the document class; source headings
 #       carry no manual numbers (see git history for the de-numbering pass).
@@ -11,7 +11,14 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
-OUT="深入理解-AI-Agent-李博杰-v1.3.pdf"
+# The full book can exceed XeTeX's default runtime memory during page output.
+# Extend the existing format without rebuilding it.
+export extra_mem_top=8000000
+export extra_mem_bot=8000000
+# Avoid slow, failing METAFONT probes when a fallback font is unavailable.
+export MKTEXTFM=0
+
+OUT="AI-Agents-in-Depth-ko.pdf"
 CHAPTERS=(
     introduction.md
     chapter1.md
@@ -25,6 +32,7 @@ CHAPTERS=(
     chapter9.md
     chapter10.md
     afterword.md
+    reference-answers.md
 )
 
 # Verify all chapters exist
@@ -51,9 +59,9 @@ pandoc "${CHAPTERS[@]}" \
     -V classoption=nofont \
     -V classoption=cyan \
     -V classoption=device=normal \
-    -V author="李博杰" \
-    --metadata title-meta="深入理解 AI Agent：设计原理与工程实践" \
-    --metadata author-meta="李博杰" \
+    -V author="Bojie Li" \
+    --metadata title-meta="AI 에이전트 깊이 이해하기: 설계 원리와 엔지니어링 실무" \
+    --metadata author-meta="Bojie Li (한국어 번역: karais89)" \
     -H preamble.tex \
     --include-before-body=cover.tex \
     --highlight-style=kate \

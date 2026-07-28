@@ -37,7 +37,7 @@ from matplotlib import pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, to_rgba
 from matplotlib.ticker import FuncFormatter
 
-REPO = "bojieli/ai-agent-book"
+REPO = "karais89/ai-agent-book"
 START_DATE = "2026-07-15"  # UTC; stars before this date are excluded
 CACHE = Path(__file__).with_name(".star-history-cache.json")
 
@@ -159,7 +159,7 @@ def draw(x: np.ndarray, y: np.ndarray, repo: str, theme_name: str, theme: dict, 
     # Latest value: end dot + bold annotation.
     ax.scatter([x[-1]], [y[-1]], s=70, color=ACCENT, edgecolor=bg, linewidth=2.2, zorder=4)
     ax.annotate(
-        f"{int(y[-1]):,} stars",
+        f"{int(y[-1]):,} ★",
         xy=(x[-1], y[-1]),
         xytext=(-6, 14),
         textcoords="offset points",
@@ -170,8 +170,7 @@ def draw(x: np.ndarray, y: np.ndarray, repo: str, theme_name: str, theme: dict, 
     )
 
     # Titles.
-    fig.text(0.075, 0.93, "Star History", fontsize=22, fontweight="bold", color=text)
-    fig.text(0.075, 0.862, repo, fontsize=12.5, color=subtext)
+    fig.text(0.075, 0.93, repo, fontsize=22, fontweight="bold", color=text)
 
     # Grid, spines, ticks.
     ax.yaxis.grid(True, color=grid, linewidth=0.9, linestyle=(0, (5, 4)))
@@ -181,7 +180,7 @@ def draw(x: np.ndarray, y: np.ndarray, repo: str, theme_name: str, theme: dict, 
     ax.spines["bottom"].set_color(grid)
     ax.tick_params(axis="both", length=0, labelsize=11.5, colors=subtext, pad=8)
     ax.xaxis.set_major_locator(mdates.DayLocator())
-    ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %-d"))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d"))
     ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _pos: f"{int(v):,}"))
 
     fig.savefig(out, facecolor=bg, bbox_inches="tight", pad_inches=0.3)

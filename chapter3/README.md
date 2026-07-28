@@ -1,31 +1,31 @@
-# 第 3 章 · 用户记忆和知识库
+# 3장 · 사용자 메모리와 지식 베이스
 
-> 跨会话记住用户、接入外部知识：用户记忆、RAG、结构化索引、知识图谱
+> 에이전트가 세션을 넘어 사용자를 기억하고 외부 지식에 접근하도록 한다. 사용자 메모리 시스템, 기본 RAG 파이프라인, 평면 텍스트를 넘어선 지식 구성과 검색(구조화 인덱스, 지식 그래프 등)을 다룬다.
 
-← [返回主目录](../README.md) · 📖 [读本章正文](../book/chapter3.md)
+← [메인 README로 돌아가기](../README.md) · 📖 [장 본문 읽기](../book/chapter3.md)
 
-## 配套项目
+## 부속 프로젝트
 
-| 编号 | 项目 | 类型 | 一句话说明 |
+| 실험 | 프로젝트 | 유형 | 설명 |
 | :--: | --- | :--: | --- |
-| 3-1, 3-2 | [user-memory](user-memory/) | ✅ | 长期用户记忆系统，让 Agent 记住偏好与历史交互、提供个性化服务 |
-| 3-1 | [user-memory-evaluation](user-memory-evaluation/) | ✅ | 系统化评估用户记忆系统的准确性、相关性和有效性 |
-| 3-2 | [mem0](mem0/) · [memobase](memobase/) | ✅ | 用 mem0、Memobase 两个开源框架各实现一版用户记忆，作为实验 3-2 的对照实现 |
-| 3-4 | [dense-embedding](dense-embedding/) | ✅ | 向量相似性搜索服务，对比 ANNOY（树）与 HNSW（图）两种 ANN 算法的权衡 |
-| 3-5 | [sparse-embedding](sparse-embedding/) | ✅ | 从零实现基于 BM25 的稀疏向量搜索引擎，可视化内部工作机制 |
-| 3-6 | [retrieval-pipeline](retrieval-pipeline/) | ✅ | 稠密 + 稀疏 + 神经重排序的完整流水线，用测试用例展示混合检索的互补效果 |
-| 3-7 | [multimodal-agent](multimodal-agent/) | ✅ | 对比原生多模态、提取为文本、工具化分析三种策略在保真度/成本/灵活性上的权衡 |
-| 3-8 | [structured-index](structured-index/) | ✅ | 实现并对比 RAPTOR（递归抽象树）与 GraphRAG（知识图谱）两种结构化索引 |
-| 3-9 | [agentic-rag](agentic-rag/) | ✅ | 对比 Non-Agentic 与 Agentic RAG，展示 ReAct 主导的迭代检索在司法问答上的优势 |
-| 3-10 | [agentic-rag-for-user-memory](agentic-rag-for-user-memory/) | ✅ | 用 Agentic RAG 管理用户对话历史，实现跨会话记忆检索 |
-| 3-11 | [contextual-retrieval](contextual-retrieval/) | ✅ | 实现 Anthropic 的上下文感知检索，为分块生成前缀摘要，失败率降低 49–67% |
-| 3-12 | [contextual-retrieval-for-user-memory](contextual-retrieval-for-user-memory/) | ✅ | 结合 Advanced JSON Cards 与上下文感知 RAG，形成双层记忆结构实现主动服务 |
-| 3-13 | [structured-knowledge-extraction](structured-knowledge-extraction/) | ✅ | 以司法判例跑通「因子发现 → 聚类原型 → 对话式建议」三段流水线 |
+| 3-1, 3-2 | [user-memory](user-memory/) | ✅ | 장기 사용자 메모리 시스템을 구축하여 에이전트가 사용자의 선호와 과거 상호작용을 기억하고 개인화된 서비스를 제공하도록 한다. |
+| 3-1 | [user-memory-evaluation](user-memory-evaluation/) | ✅ | 여러 테스트 시나리오와 평가 지표를 사용해 사용자 메모리 시스템의 정확성, 관련성, 효과를 체계적으로 평가한다. |
+| 3-2 | [mem0](mem0/) · [memobase](memobase/) | ✅ | 오픈 소스 메모리 프레임워크인 mem0와 Memobase로 사용자 메모리를 각각 구현한다. 실험 3-2 ‘메모리 전략 비교’의 비교 구현으로서 서로 다른 메모리 솔루션의 추출 형식과 답변 품질을 가로로 비교할 수 있다. |
+| 3-4 | [dense-embedding](dense-embedding/) | ✅ | 벡터 유사도 검색 서비스를 만들고 트리 기반 ANNOY와 그래프 기반 HNSW 근사 최근접 이웃 인덱스 알고리즘을 비교한다. 성능, 메모리 사용량, 갱신 능력 측면에서 인덱싱 전략 사이의 상충 관계를 보여 준다. |
+| 3-5 | [sparse-embedding](sparse-embedding/) | ✅ | BM25 알고리즘 기반 희소 벡터 검색 엔진을 처음부터 구현한다. 풍부한 로그와 시각화 인터페이스로 용어 빈도 가중치 계산과 역색인 원리를 비롯한 검색 엔진 내부 작동을 이해하도록 돕는다. |
+| 3-6 | [retrieval-pipeline](retrieval-pipeline/) | ✅ | 밀집 검색, 희소 검색, 신경망 재순위화를 결합한 전체 검색 파이프라인을 만든다. 세심하게 설계한 테스트 사례를 통해 여러 상황에서 하이브리드 검색이 주는 상호 보완적 이점을 체계적으로 보여 준다. |
+| 3-7 | [multimodal-agent](multimodal-agent/) | ✅ | 네이티브 멀티모달 처리, 텍스트 추출, 도구 기반 분석이라는 세 전략을 비교한다. 통합 프레임워크 안의 제거 실험을 통해 충실도, 비용, 유연성 사이의 상충 관계를 밝힌다. |
+| 3-8 | [structured-index](structured-index/) | ✅ | 재귀 요약 기반 계층 트리인 RAPTOR와 지식 그래프인 GraphRAG라는 두 가지 구조화 인덱싱 방식을 구현하고 비교한다. |
+| 3-9 | [agentic-rag](agentic-rag/) | ✅ | 전통적인 비에이전틱 RAG와 에이전틱 RAG의 성능 차이를 비교한다. ReAct 패턴을 사용하는 에이전트가 반복 정보 검색을 주도하여 복잡한 사법 질의응답의 품질을 크게 높이는 방식을 보여 준다. |
+| 3-10 | [agentic-rag-for-user-memory](agentic-rag-for-user-memory/) | ✅ | 에이전틱 RAG 프레임워크로 사용자 대화 기록을 관리한다. 다중 턴 반복 검색 능력을 활용해 세션을 넘나드는 메모리를 검색하고 기본 회상 및 세션 간 검색 기능을 제공한다. |
+| 3-11 | [contextual-retrieval](contextual-retrieval/) | ✅ | Anthropic이 제안한 컨텍스트 검색 기술을 구현한다. 텍스트 청크에 핵심 컨텍스트가 담긴 접두 요약을 생성하여 전통적인 청킹의 컨텍스트 손실 문제를 해결하고 검색 실패율을 49~67% 줄인다. |
+| 3-12 | [contextual-retrieval-for-user-memory](contextual-retrieval-for-user-memory/) | ✅ | 컨텍스트 검색 기술을 사용자 메모리 구축에 적용한다. 고급 JSON 카드와 컨텍스트 RAG를 결합한 이중 계층 메모리 구조로 더 높은 수준의 선제적 서비스 능력을 제공한다. |
+| 3-13 | [structured-knowledge-extraction](structured-knowledge-extraction/) | ✅ | 사법 판례를 예로 들어 ‘상향식 요소 발견 → 사건 원형 군집화 → 대화형 자문 에이전트’의 3단계 파이프라인을 구현한다. 고정 필드를 미리 정의하지 않고 LLM이 많은 사건에서 요소를 자율적으로 발견해 모듈형 스키마(핵심 요소 + 혐의별 확장 요소)로 요약한다. 이어 사건을 여러 원형으로 군집화하고 원형마다 각 요소의 중요도를 계산한다. 에이전트는 새 사건 사실을 가장 비슷한 원형과 매칭하고 요소 중요도에 따라 빠진 정보를 물은 뒤, 법률 면책 고지와 함께 근거 기반 조언을 제공한다. |
 
-## 项目类型说明
+## 프로젝트 유형
 
-| 图标 | 类型 | 含义 |
+| 아이콘 | 유형 | 의미 |
 | :--: | --- | --- |
-| ✅ | **可独立运行** | 本仓库自带完整代码，配置好 API Key 即可运行 |
-| 📖 | **复现指南** | 依赖需自行 `git clone` 的**外部仓库**（训练框架、评测基准等） |
-| 🚧 | **设计文档** | 仅包含架构与实现方案，可运行代码仍在完善中 |
+| ✅ | **독립 실행형** | 전체 코드가 이 저장소에 있으며 API 키를 설정하면 실행 가능 |
+| 📖 | **재현 안내서** | 별도로 `git clone`해야 하는 **외부 저장소** 기반의 상세 문서 |
+| 🚧 | **설계 문서** | 아키텍처·구현 계획만 있으며 실행 코드 작업 진행 중 |

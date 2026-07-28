@@ -1,7 +1,7 @@
 -- Pandoc Lua filter: wrap special sections in tcolorbox environments.
 --
--- 1. "实验 X.Y" headings → experimentbox (description only, until next heading)
--- 2. "思考题" headings → questionbox (until end of chapter or next same/higher heading)
+-- 1. "실험 X-Y" headings → experimentbox (description only, until next heading)
+-- 2. Reflection-question headings → questionbox
 
 function Pandoc(doc)
   local new_blocks = {}
@@ -25,14 +25,16 @@ function Pandoc(doc)
     if block.t == "Header" then
       local text = pandoc.utils.stringify(block)
 
-      if text:match("^实验%s?%d") then
+      if text:match("^실험%s?%d") then
         if in_box then close_box() end
         box_level = block.level
         block.classes:insert("unnumbered")
         open_box("experimentbox")
         table.insert(new_blocks, block)
 
-      elseif text:match("^思考题") then
+      elseif text:match("^생각해%s*볼%s*문제")
+          or text:match("^생각해%s*볼%s*질문")
+          or text:match("^심층%s*사고") then
         if in_box then close_box() end
         box_level = block.level
         block.classes:insert("unnumbered")

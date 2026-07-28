@@ -16,13 +16,14 @@ cp "$ROOT/index.md" "$DEST/index.md"
 # robots.txt at the site root (points crawlers at the auto-generated sitemap).
 [ -f "$ROOT/robots.txt" ] && cp "$ROOT/robots.txt" "$DEST/robots.txt"
 
-# The language editions, each with its images/ subfolder.
-for lang in book book-en book-ru book-ta book-vi book-zhtw book-ja book-ar; do
+# The Korean default edition and the preserved English edition, each with
+# its images/ subfolder.
+for lang in book book-en; do
   mkdir -p "$DEST/$lang"
   cp -R "$ROOT/$lang" "$DEST/"
 done
 
-# Promote each chapter of the default (zh) edition to a directory index
+# Promote each chapter of the default (ko) edition to a directory index
 # (book/chapterN.md -> book/chapterN/index.md) so mkdocs.yml can use
 # navigation.indexes to attach the chapter prose to its nav section —
 # clicking a chapter title in the sidebar then opens the chapter directly.
@@ -105,7 +106,7 @@ find "$DEST" -type d -name node_modules -prune -exec rm -rf {} +
 # MkDocs renders pages as directory URLs (`chapter1/`), so the `.md`
 # suffix must be stripped. Keep the paths RELATIVE (no leading slash) so
 # they keep working under the site's sub-path
-# (`https://bojieli.github.io/ai-agent-book/`).
+# (`https://karais89.github.io/ai-agent-book/`).
 find "$DEST/chapter"* -type f -name '*.md' -print0 \
   | xargs -0 sed -i.bak \
       -e 's|\.\./book/\([a-zA-Z0-9_-]*\)\.md|../book/\1/|g' \
@@ -115,7 +116,7 @@ find "$DEST" -name '*.md.bak' -delete
 
 # Per-language experiment index pages (chapterN/README.<lang>.md) contain
 # relative links like [exp](local_llm_serving/) that resolve correctly on
-# the Chinese URL /chapterN/ but break on the translated URL
+# the Korean URL /chapterN/ but break on the translated URL
 # /chapterN/README.<lang>/ (they'd resolve to /chapterN/README.<lang>/exp/,
 # which 404s). Rewrite those relative links to be relative to /chapterN/
 # by prefixing ../ — this makes them resolve to /chapterN/<exp>/ in any

@@ -1,87 +1,123 @@
--- crossref.lua — internal cross-reference links for the book.
---
--- Keeps the existing manual numbering (图N-M, 第N章) but turns every in-text
--- reference into a clickable internal link, and drops a \label anchor on each
--- figure and chapter. Uses raw LaTeX \label / \hyperref so it does not depend
--- on LaTeX counters (the displayed text is the manual number verbatim).
---
--- Topdown traversal: Image returns `false` to skip its own caption, so figure
--- captions are anchored but NOT self-linkified.
+-- Korean internal cross-reference links for the PDF edition.
 
-local chap = 0
+local chapter_index = 0
 
-local function fig_label(n, m) return 'fig:' .. n .. '-' .. m end
-local function chap_label(n) return 'chap:' .. n end
+local function fig_label(n, m)
+  return "fig:" .. n .. "-" .. m
+end
 
--- Replace 图N-M / 第N章 occurrences inside a plain string with a list of
--- inlines (Str segments + RawInline hyperref links).
-local function linkify(text)
-  local out = {}
-  local i = 1
-  local len = #text
-  while i <= len do
-    -- earliest of the two patterns from position i
-    local fs, fe, fn, fm = text:find('图(%d+)%-(%d+)', i)
-    local cs, ce, cn = text:find('第(%d+)章', i)
-    -- choose the nearest match
-    local pick
-    if fs and (not cs or fs <= cs) then pick = 'fig'
-    elseif cs then pick = 'chap' end
-    if not pick then
-      table.insert(out, pandoc.Str(text:sub(i)))
-      break
-    end
-    local ms = (pick == 'fig') and fs or cs
-    local me = (pick == 'fig') and fe or ce
-    if ms > i then table.insert(out, pandoc.Str(text:sub(i, ms - 1))) end
-    if pick == 'fig' then
-      table.insert(out, pandoc.RawInline('latex',
-        '\\crossreflink{' .. fig_label(fn, fm) .. '}{图' .. fn .. '-' .. fm .. '}'))
-    else
-      table.insert(out, pandoc.RawInline('latex',
-        '\\crossreflink{' .. chap_label(cn) .. '}{第' .. cn .. '章}'))
-    end
-    i = me + 1
+local function chapter_label(n)
+  return "chap:" .. n
+end
+
+local function latex_link(label, text)
+  return pandoc.RawInline(
+    "latex",
+    "\\crossreflink{" .. label .. "}{" .. text .. "}"
+  )
+end
+
+local function link_attached_chapter(text)
+  local prefix, number, suffix = text:match("^(.-)제(%d+)장(.*)$")
+  local display_prefix = "제"
+  if not number then
+    prefix, number, suffix = text:match("^(.-)(%d+)장(.*)$")
+    display_prefix = ""
+  end
+  if not number then
+    return nil
+  end
+
+  local out = pandoc.Inlines{}
+  if prefix ~= "" then
+    out:insert(pandoc.Str(prefix))
+  end
+  out:insert(latex_link(chapter_label(number), display_prefix .. number .. "장"))
+  if suffix ~= "" then
+    out:insert(pandoc.Str(suffix))
   end
   return out
 end
 
 return {
   {
-    traverse = 'topdown',
+    traverse = "topdown",
 
-    Header = function(el)
-      if el.level == 1 and not el.classes:includes('unnumbered') then
-        chap = chap + 1
-        el.content:insert(pandoc.RawInline('latex', '\\label{' .. chap_label(chap) .. '}'))
+    Header = function(element)
+      if element.level == 1 and not element.classes:includes("unnumbered") then
+        chapter_index = chapter_index + 1
+        element.content:insert(
+          pandoc.RawInline(
+            "latex",
+            "\\label{" .. chapter_label(chapter_index) .. "}"
+          )
+        )
       end
-      return el
+      return element
     end,
 
-    -- pandoc 3.x: a standalone image is a Figure block carrying the caption.
-    Figure = function(el)
-      local cap = pandoc.utils.stringify(el.caption.long)
-      local n, m = cap:match('图%s*(%d+)%-(%d+)')
+    Figure = function(element)
+      local caption = pandoc.utils.stringify(element.caption.long)
+      local n, m = caption:match("그림%s*(%d+)%-(%d+)")
       if n and m then
-        el.identifier = fig_label(n, m)  -- LaTeX writer emits \label{fig:N-M}
+        element.identifier = fig_label(n, m)
       end
-      return el, false  -- do not descend into caption (no self-links)
+      return element, false
     end,
 
-    -- Fallback for any inline image that still carries its own caption.
-    Image = function(el)
-      local cap = pandoc.utils.stringify(el.caption)
-      local n, m = cap:match('图%s*(%d+)%-(%d+)')
-      if n and m and el.identifier == '' then
-        el.identifier = fig_label(n, m)
+    Image = function(element)
+      local caption = pandoc.utils.stringify(element.caption)
+      local n, m = caption:match("그림%s*(%d+)%-(%d+)")
+      if n and m and element.identifier == "" then
+        element.identifier = fig_label(n, m)
       end
-      return el, false
+      return element, false
     end,
 
-    Str = function(el)
-      if el.text:find('图%d') or el.text:find('第%d+章') then
-        return linkify(el.text)
+    Inlines = function(inlines)
+      local out = pandoc.Inlines{}
+      local i = 1
+      local changed = false
+
+      while i <= #inlines do
+        local current = inlines[i]
+        if current.t == "Str"
+            and current.text == "그림"
+            and i + 2 <= #inlines
+            and inlines[i + 1].t == "Space"
+            and inlines[i + 2].t == "Str" then
+          local n, m, suffix = inlines[i + 2].text:match("^(%d+)%-(%d+)(.*)$")
+          if n and m then
+            out:insert(latex_link(fig_label(n, m), "그림 " .. n .. "-" .. m))
+            if suffix ~= "" then
+              out:insert(pandoc.Str(suffix))
+            end
+            i = i + 3
+            changed = true
+          else
+            out:insert(current)
+            i = i + 1
+          end
+        elseif current.t == "Str" then
+          local linked = link_attached_chapter(current.text)
+          if linked then
+            for _, element in ipairs(linked) do
+              out:insert(element)
+            end
+            changed = true
+          else
+            out:insert(current)
+          end
+          i = i + 1
+        else
+          out:insert(current)
+          i = i + 1
+        end
+      end
+
+      if changed then
+        return out
       end
     end,
-  }
+  },
 }

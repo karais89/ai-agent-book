@@ -1,7 +1,6 @@
 # CodeRabbit configuration for ai-agent-book
-# See https://github.com/bojieli/ai-agent-book/issues/330
 
-language: zh-CN
+language: ko-KR
 
 reviews:
   path_filters:

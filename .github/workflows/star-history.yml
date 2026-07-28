@@ -29,8 +29,8 @@ jobs:
       - name: Generate star history chart
         run: python scripts/gen_star_history.py --refresh
         env:
-          # STAR_HISTORY_TOKEN（细粒度 PAT）如存在则优先，否则用内置 GITHUB_TOKEN，
-          # 读取公开仓库的 stargazers 时间戳不需要额外权限。
+          # STAR_HISTORY_TOKEN(세분화 PAT)이 있으면 우선 사용하고,
+          # 없으면 공개 저장소의 stargazer 타임스탬프를 읽을 수 있는 GITHUB_TOKEN을 사용한다.
           GITHUB_TOKEN: ${{ secrets.STAR_HISTORY_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Commit updated charts

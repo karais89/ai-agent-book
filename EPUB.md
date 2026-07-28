@@ -1,30 +1,23 @@
-# Build the EPUB editions
+# EPUB 빌드
 
-The repository can build EPUB 3 editions for Simplified Chinese, Traditional Chinese (Taiwan), English, Arabic, Russian, Tamil, Vietnamese, and Japanese from the same Markdown sources used by the PDF editions. Arabic EPUBs use RTL page progression while preserving LTR layout for code and mathematics.
+이 저장소는 PDF판과 같은 Markdown 원본을 사용해 한국어와 영어 EPUB 3 전자책을 생성한다.
 
-Install [Pandoc](https://pandoc.org/), Poppler (`pdftoppm`), and optionally [EPUBCheck](https://www.w3.org/publishing/epubcheck/). The builder uses each PDF's first page as the corresponding EPUB cover. When EPUBCheck is available, the builder validates every generated book.
+[Pandoc](https://pandoc.org/), Poppler의 `pdftoppm`, 선택 사항인
+[EPUBCheck](https://www.w3.org/publishing/epubcheck/)를 설치해야 한다. 빌드 스크립트는
+각 언어 PDF의 첫 페이지를 EPUB 표지로 사용하므로 PDF를 먼저 생성해야 한다.
+EPUBCheck가 설치되어 있으면 생성한 파일을 자동으로 검증한다.
 
-Build every language from the repository root:
+저장소 루트에서 두 언어를 모두 빌드한다.
 
 ```bash
 ./build_epub.sh
 ```
 
-Build one language by passing its language code:
+한 언어만 빌드하려면 언어 코드를 지정한다.
 
 ```bash
-./build_epub.sh zh-CN
-./build_epub.sh zh-TW
+./build_epub.sh ko
 ./build_epub.sh en
-./build_epub.sh ar
-./build_epub.sh ru
-./build_epub.sh ta
-./build_epub.sh vi
-./build_epub.sh ja
 ```
 
-Note: `./build_epub.sh` (no argument, i.e. `all`) does **not** yet include Japanese
-or Arabic while their PDF pipelines are being validated. Build them explicitly
-with `./build_epub.sh ja` or `./build_epub.sh ar`.
-
-The builder writes each `.epub` beside its language's PDF. Generated EPUB files are ignored by Git.
+생성된 `.epub` 파일은 각 언어의 책 디렉터리에 저장되며 Git 추적에서는 제외된다.

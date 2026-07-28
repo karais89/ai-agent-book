@@ -1,5 +1,5 @@
 /* ===========================================================================
-   深入理解 AI Agent — 把 Material 主题「去装饰」,复刻 icyfenix.cn 的扁平风
+   AI 에이전트 깊이 이해하기 — Material의 장식을 덜어 낸 평면형 독서 테마
    ===========================================================================
    设计参考:实测 icyfenix.cn 的 computed style(2026-07)
      - navbar 57px / 白底 / 1px 浅灰下划线
@@ -16,8 +16,8 @@
 /* ── 0. 设计 token(对齐 fenix 实测值) ─────────────────────────── */
 
 :root {
-  --md-text-font: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB",
-                  "Microsoft YaHei", -apple-system, BlinkMacSystemFont,
+  --md-text-font: "Noto Sans KR", "Noto Sans CJK KR", "Apple SD Gothic Neo",
+                  "Malgun Gothic", -apple-system, BlinkMacSystemFont,
                   "Segoe UI", Helvetica, Arial, sans-serif;
   --md-code-font: "JetBrains Mono", "Fira Code", SFMono-Regular, Consolas,
                   Menlo, monospace;
@@ -223,8 +223,7 @@
 
 /* ── 2b. 右侧栏(本页大纲):弱化存在感,阅读时的"你在这里" ──── */
 
-/* 同上:宽度只在桌面端覆写(移动端的收起位置同样被硬编码)。
-   13.5rem 让大部分中文标题单行放下,不再折成两行。 */
+/* 데스크톱에서만 너비를 덮어써 긴 한국어 제목도 보기 좋게 표시한다. */
 @media screen and (min-width: 76.25em) {
   .md-sidebar--secondary {
     width: 13.5rem;
@@ -263,7 +262,7 @@
 /* ── 3. 正文排版 ─────────────────────────────────────────────── */
 
 .md-typeset {
-  font-size: 0.78rem;          /* 中文密集排版,比 fenix 16px 略小更舒服 */
+  font-size: 0.78rem;          /* 밀도 높은 한국어 기술 문서에 맞춘 크기 */
   line-height: 1.65;
   color: var(--fenix-ink);
   -webkit-font-smoothing: antialiased;
@@ -283,7 +282,7 @@
 .md-typeset h1 {
   color: var(--fenix-ink) !important;
   font-weight: 600 !important;
-  font-size: 1.85rem !important;   /* ≈ 29.6px,比 fenix 略小,适合中文 */
+  font-size: 1.85rem !important;   /* 약 29.6px */
   letter-spacing: -0.01em;
   margin-top: 0;
   margin-bottom: 1.2rem;
@@ -453,7 +452,7 @@
 
 /* ── 9. 章节卡片网格 —— 扁平化(去掉浮起+阴影) ────────────────── */
 
-/* 首页三列统计(10 章 / 88 实验 / 5 语言) */
+/* 홈페이지 3열 통계(10장 / 93개 실험 / 2개 언어) */
 .stat-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -570,51 +569,4 @@
 [data-md-color-scheme="slate"] .exp-card,
 [data-md-color-scheme="slate"] .hero {
   background: var(--fenix-bg);
-}
-
-/* ── 12. Arabic / RTL edition ─────────────────────────────────── */
-
-html[dir="rtl"] body {
-  font-family: "Noto Naskh Arabic", Amiri, "Noto Sans Arabic",
-               -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-html[dir="rtl"] .md-typeset {
-  direction: rtl;
-  text-align: right;
-}
-
-html[dir="rtl"] .md-typeset pre,
-html[dir="rtl"] .md-typeset code,
-html[dir="rtl"] .md-typeset kbd,
-html[dir="rtl"] .md-typeset samp,
-html[dir="rtl"] .md-typeset .highlight,
-html[dir="rtl"] .md-typeset .arithmatex,
-html[dir="rtl"] .md-typeset .mermaid {
-  direction: ltr;
-  text-align: left;
-  unicode-bidi: isolate;
-}
-
-html[dir="rtl"] .md-typeset blockquote {
-  border-left: 0;
-  border-right: 0.2rem solid var(--fenix-border);
-  padding-left: 0;
-  padding-right: 0.8rem;
-}
-
-html[dir="rtl"] .md-typeset ul,
-html[dir="rtl"] .md-typeset ol {
-  margin-left: 0;
-  margin-right: 1.25em;
-}
-
-html[dir="rtl"] .md-typeset table:not([class]) th,
-html[dir="rtl"] .md-typeset table:not([class]) td {
-  text-align: right;
-}
-
-html[dir="rtl"] .lang-select {
-  margin-left: 0;
-  margin-right: 0.5rem;
 }

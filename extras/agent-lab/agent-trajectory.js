@@ -242,22 +242,22 @@
         <div class="task" id="t-task"></div>
       </header>
       <div class="toolbar">
-        <button id="btn-play">▶ 自动播放</button>
-        <button id="btn-next">下一步 ⏭</button>
-        <button id="btn-reset">重置</button>
+        <button id="btn-play">▶ 자동 재생</button>
+        <button id="btn-next">다음 단계 ⏭</button>
+        <button id="btn-reset">초기화</button>
         <div class="progress"><i id="bar"></i></div>
         <span id="counter">0 / 0</span>
       </div>
       <ol class="timeline" id="timeline"></ol>
     </article>
-    <div class="error" id="loading" hidden>加载轨迹中……</div>
+    <div class="error" id="loading" hidden>궤적을 불러오는 중…</div>
   `;
 
   const TYPE_LABEL = {
-    thought:     '思考',
-    action:      '行动',
-    observation: '观察',
-    answer:      '答案',
+    thought:     '사고',
+    action:      '행동',
+    observation: '관찰',
+    answer:      '답변',
   };
 
   class AgentTrajectory extends HTMLElement {
@@ -274,7 +274,7 @@
       this._wire();
       const src = this.getAttribute('src');
       if (!src) {
-        this._fail('未指定 src 属性');
+        this._fail('src 속성이 지정되지 않았습니다');
         return;
       }
       this._load(src);
@@ -303,7 +303,7 @@
         const data = await res.json();
         this._render(data);
       } catch (e) {
-        this._fail(`无法加载轨迹：${e.message}`);
+        this._fail(`궤적을 불러올 수 없습니다: ${e.message}`);
       }
     }
 
@@ -317,11 +317,11 @@
       const $ = (id) => this.shadowRoot.getElementById(id);
       $('loading').hidden = true;
 
-      $('t-title').textContent   = data.title || data.experiment || 'Agent 轨迹';
-      $('t-model').textContent   = '🤖 ' + (data.model || 'unknown');
-      $('t-outcome').textContent = '结果：' + this._outcomeLabel(data.outcome);
-      $('t-iter').textContent    = (data.steps || []).length + ' 步';
-      $('t-task').innerHTML      = data.task ? `任务：<b>${this._escape(data.task)}</b>` : '';
+      $('t-title').textContent   = data.title || data.experiment || '에이전트 궤적';
+      $('t-model').textContent   = '🤖 ' + (data.model || '알 수 없음');
+      $('t-outcome').textContent = '결과: ' + this._outcomeLabel(data.outcome);
+      $('t-iter').textContent    = (data.steps || []).length + '단계';
+      $('t-task').innerHTML      = data.task ? `작업: <b>${this._escape(data.task)}</b>` : '';
 
       const ol = $('timeline');
       ol.innerHTML = '';
@@ -338,7 +338,7 @@
         badge.textContent = TYPE_LABEL[s.type] || s.type;
         const iter = document.createElement('span');
         iter.className = 'iter';
-        iter.textContent = `第 ${s.iteration} 轮迭代`;
+        iter.textContent = `${s.iteration}번째 반복`;
         head.append(badge, iter);
         if (s.tool) {
           const t = document.createElement('span');
@@ -376,10 +376,10 @@
       body.classList.add('collapsed');
       const toggle = document.createElement('span');
       toggle.className = 'toggle';
-      toggle.textContent = '展开 ▾';
+      toggle.textContent = '펼치기 ▾';
       toggle.addEventListener('click', () => {
         const collapsed = body.classList.toggle('collapsed');
-        toggle.textContent = collapsed ? '展开 ▾' : '收起 ▴';
+        toggle.textContent = collapsed ? '펼치기 ▾' : '접기 ▴';
       });
       body.parentElement.insertBefore(toggle, body.nextSibling);
     }
@@ -388,14 +388,14 @@
       if (this._timer) {
         clearInterval(this._timer);
         this._timer = null;
-        this.shadowRoot.getElementById('btn-play').textContent = '▶ 自动播放';
+        this.shadowRoot.getElementById('btn-play').textContent = '▶ 자동 재생';
       } else {
-        this.shadowRoot.getElementById('btn-play').textContent = '⏸ 暂停';
+        this.shadowRoot.getElementById('btn-play').textContent = '⏸ 일시정지';
         this._timer = setInterval(() => {
           if (this._shown >= this._total) {
             clearInterval(this._timer);
             this._timer = null;
-            this.shadowRoot.getElementById('btn-play').textContent = '▶ 自动播放';
+            this.shadowRoot.getElementById('btn-play').textContent = '▶ 자동 재생';
             return;
           }
           this._step();
@@ -413,7 +413,7 @@
       if (this._timer) {
         clearInterval(this._timer);
         this._timer = null;
-        this.shadowRoot.getElementById('btn-play').textContent = '▶ 自动播放';
+        this.shadowRoot.getElementById('btn-play').textContent = '▶ 자동 재생';
       }
       this._shown = 0;
       this._update();
@@ -435,8 +435,8 @@
     }
 
     _outcomeLabel(o) {
-      return ({ success: '✅ 成功', failure: '❌ 失败',
-                loop: '🔁 死循环', timeout: '⏱️ 超时' })[o] || (o || '未知');
+      return ({ success: '✅ 성공', failure: '❌ 실패',
+                loop: '🔁 무한 루프', timeout: '⏱️ 시간 초과' })[o] || (o || '알 수 없음');
     }
 
     _escape(s) {

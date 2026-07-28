@@ -1,34 +1,34 @@
-# 第 7 章 · 模型后训练
+# 7장 · 모델 사후 학습
 
-> 预训练/SFT/RL 三阶段：何时选 SFT、何时选 RL，工具调用内化、样本效率
+> 사전 학습, SFT, RL이라는 세 단계를 종합적으로 살펴본다. SFT와 RL을 각각 언제 선택할지, RLHF, 알고리즘 비교, 데이터와 환경, 모델에 도구 호출을 가르치고 샘플 효율을 높이는 최전선 연구를 다룬다.
 
-← [返回主目录](../README.md) · 📖 [读本章正文](../book/chapter7.md)
+← [메인 README로 돌아가기](../README.md) · 📖 [장 본문 읽기](../book/chapter7.md)
 
-## 配套项目
+## 부속 프로젝트
 
-| 编号 | 项目 | 类型 | 一句话说明 |
+| 실험 | 프로젝트 | 유형 | 설명 |
 | :--: | --- | :--: | --- |
-| 7-3, 7-4 | [MiniMind-pretrain](MiniMind-pretrain/) | 📖 | 从零预训练小型 LLM/VLM，理解完整预训练流程与关键技术 |
-| 7-5 | [continued-pretraining](continued-pretraining/) | ✅ | 在特定领域数据上持续预训练，提升目标领域表现 |
-| 7-6 | [sesame](sesame/) | ✅ | Sesame CSM 语音 SFT：LoRA 微调 1B TTS 模型，用 `<laugh>`、`<sigh>` 等副语言标记控制表达 |
-| 7-6 | [orpheus](orpheus/) | ✅ | Orpheus 3B 语音 SFT：LoRA 微调 TTS 模型，拼接参考音频实现跨句音色一致的声音复刻 |
-| 7-7 | [MultilingualReasoning](MultilingualReasoning/) | ✅ | 训练模型在多语言环境下的推理能力，提升跨语言任务表现 |
-| 7-9 | [cot-distillation](cot-distillation/) | ✅ | 经 OpenRouter 调用 Claude 等前沿模型蒸馏 CoT 轨迹，规则验证器过滤后生成 SFT 数据（实验 7-9 配套） |
-| 7-10 | [AdaptThink](AdaptThink/) | 📖 | 让推理模型按问题难度自适应选 Thinking/NoThinking，约束优化 + 重要性采样降成本 45–69% 同时提准确率 |
-| 7-11 | `SFTvsRL/` | 📖 | 系统性对比监督微调与强化学习在不同任务上的效果与适用场景 |
-| 7-12 | [SpatialReasoning](SpatialReasoning/) | 📖 | 训练模型的空间推理能力，处理位置、方向、距离等空间关系 |
-| 7-13 | [SimpleVLA-RL](SimpleVLA-RL/) | 📖 | 视觉-语言-动作 RL，让模型理解视觉输入并执行相应动作 |
-| 7-14 | [RLVP](RLVP/) | 📖 | 奖励结果、惩罚路径（RLVP）后训练研究（实验 7-14 配套）；完整训练/评估代码在独立论文仓库 `19PINE-AI/rlvp`，需自行克隆 |
-| 7-15 | [retool](retool/) | 📖 | 多轮对话 + 代码沙箱提升数学推理，SFT→RL 两阶段；Qwen2.5-32B + AIME 2024 + DAPO + SandboxFusion |
-| 7-16 | `AWorld/` · [AWorld-train](AWorld-train/) | 📖 | 基于 AWorld 框架训练具身 Agent，在虚拟环境中执行任务并从经验中学习 |
-| — | `verl/` | 📖 | 为 LLM RLHF 设计的高效 RL 框架，支持 PPO/GRPO/DAPO 等 |
-| — | [Intuitor](Intuitor/) | ✅ | 训练模型的直觉推理，快速做出合理判断而不依赖详细思考链 |
-| — | `tinker-cookbook/` | 📖 | 收集各种模型训练的实用技巧与最佳实践 |
+| 7-3, 7-4 | [MiniMind-pretrain](MiniMind-pretrain/) | 📖 | 소형 언어 모델을 처음부터 사전 학습하여 전체 사전 학습 과정과 핵심 기술을 이해한다. |
+| 7-5 | [continued-pretraining](continued-pretraining/) | ✅ | 도메인 특화 데이터로 연속 사전 학습을 수행해 목표 도메인의 모델 성능을 높인다. |
+| 7-6 | [sesame](sesame/) | ✅ | Sesame CSM 음성 SFT: 1B TTS 모델을 LoRA 미세 조정하고 `<laugh>`, `<sigh>` 같은 준언어 태그로 표현을 제어한다. |
+| 7-6 | [orpheus](orpheus/) | ✅ | Orpheus 3B 음성 SFT: TTS 모델을 LoRA 미세 조정하고 참조 음성으로 음성을 복제해 문장 사이의 음색 일관성을 유지한다. |
+| 7-7 | [MultilingualReasoning](MultilingualReasoning/) | ✅ | 여러 언어 환경에서 모델의 사고 능력을 학습하여 언어 간 작업의 성능을 높인다. |
+| 7-9 | [cot-distillation](cot-distillation/) | ✅ | OpenRouter를 통해 Claude 같은 최전선 모델에서 사고의 연쇄(CoT) 궤적을 증류하고, 규칙으로 검증한 뒤 SFT 데이터로 변환한다(실험 7-9 부속 프로젝트). |
+| 7-10 | [AdaptThink](AdaptThink/) | 📖 | 사고 모델이 문제 난이도에 따라 사고 모드(Thinking/NoThinking)를 적응적으로 선택하도록 가르친다. 제약 최적화와 중요도 샘플링으로 정확도를 높이면서 사고 비용을 45~69% 줄인다. DeepSeek-R1-Distill-Qwen을 기반으로 DAPO 알고리즘으로 학습한다. |
+| 7-11 | `SFTvsRL/` | 📖 | 여러 작업에서 지도 미세 조정(SFT)과 강화 학습(RL)의 효과를 체계적으로 비교하고 두 방법의 장단점과 적합한 적용 시나리오를 분석한다. |
+| 7-12 | [SpatialReasoning](SpatialReasoning/) | 📖 | 위치, 방향, 거리 같은 공간 관계 문제를 처리하도록 모델의 공간 사고 능력을 학습하는 데 초점을 맞춘다. |
+| 7-13 | [SimpleVLA-RL](SimpleVLA-RL/) | 📖 | 강화 학습에서 비전, 언어, 행동을 결합하여 모델이 시각 입력을 이해하고 그에 맞는 행동을 수행하도록 한다. |
+| 7-14 | [RLVP](RLVP/) | 📖 | RLVP 사후 학습 연구—결과를 보상하고 경로에 페널티를 부여한다(실험 7-14 부속 프로젝트). 전체 학습·평가 코드는 별도 논문 저장소 `19PINE-AI/rlvp`에 있으며 직접 복제해야 한다. |
+| 7-15 | [retool](retool/) | 📖 | 다중 턴 대화와 코드 샌드박스로 대규모 언어 모델의 수학 사고 능력을 높인다. SFT와 RL의 2단계 학습을 통해 코드 실행 환경을 활용해 수학 문제를 풀도록 한다. Qwen2.5-32B-Instruct를 기반으로 AIME 2024 데이터셋에서 DAPO 알고리즘과 SandboxFusion 샌드박스를 사용해 학습한다. |
+| 7-16 | `AWorld/` · [AWorld-train](AWorld-train/) | 📖 | AWorld 프레임워크를 기반으로 구현형 에이전트를 학습하여 가상 환경에서 복잡한 작업을 수행하고 경험으로부터 배우도록 한다. |
+| — | `verl/` | 📖 | 대규모 언어 모델의 RLHF 학습을 위해 설계한 효율적인 강화 학습 프레임워크로 PPO, GRPO, DAPO 등 여러 알고리즘을 지원한다. |
+| — | [Intuitor](Intuitor/) | ✅ | 모델의 직관적 사고 능력을 학습하여 상세한 사고의 연쇄 없이도 빠르고 합리적인 판단을 내리도록 한다. |
+| — | `tinker-cookbook/` | 📖 | 모델 학습에 관한 여러 실용적 요령과 모범 사례를 모은다. |
 
-## 项目类型说明
+## 프로젝트 유형
 
-| 图标 | 类型 | 含义 |
+| 아이콘 | 유형 | 의미 |
 | :--: | --- | --- |
-| ✅ | **可独立运行** | 本仓库自带完整代码，配置好 API Key 即可运行 |
-| 📖 | **复现指南** | 依赖需自行 `git clone` 的**外部仓库**（训练框架、评测基准等） |
-| 🚧 | **设计文档** | 仅包含架构与实现方案，可运行代码仍在完善中 |
+| ✅ | **독립 실행형** | 전체 코드가 이 저장소에 있으며 API 키를 설정하면 실행 가능 |
+| 📖 | **재현 안내서** | 별도로 `git clone`해야 하는 **외부 저장소** 기반의 상세 문서 |
+| 🚧 | **설계 문서** | 아키텍처·구현 계획만 있으며 실행 코드 작업 진행 중 |

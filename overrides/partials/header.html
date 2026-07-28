@@ -35,8 +35,8 @@
             data-sidebar-toggle
             aria-controls="primary-navigation"
             aria-expanded="true"
-            aria-label="隐藏侧边栏"
-            title="隐藏侧边栏"
+            aria-label="사이드바 숨기기"
+            title="사이드바 숨기기"
             hidden>
       {% include ".icons/material/menu-open.svg" %}
     </button>
@@ -83,7 +83,7 @@
     {# ── Language selector dropdown (between search & source) ── #}
     <select id="lang-selector"
             class="lang-select"
-            aria-label="Switch language"></select>
+            aria-label="언어 전환"></select>
 
     {# Expose language config + site root to the switcher script. #}
     <script>window.LANG_CONFIG = {{ config.extra.languages | tojson }};</script>

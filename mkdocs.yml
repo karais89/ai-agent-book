@@ -1,8 +1,8 @@
-site_name: AI Agents in Depth
-site_description: AI Agents in Depth — Design Principles and Engineering Practice. An open-source book covering AI Agents from theory to production, with 10 chapters and 92 companion experiments.
-site_url: https://bojieli.github.io/ai-agent-book
-repo_url: https://github.com/bojieli/ai-agent-book
-repo_name: bojieli/ai-agent-book
+site_name: AI 에이전트 깊이 이해하기
+site_description: AI 에이전트의 설계 원리와 엔지니어링 실무를 이론부터 프로덕션까지 다루는 오픈 소스 기술서입니다. 10개 장과 93개 실습을 제공합니다.
+site_url: https://karais89.github.io/ai-agent-book
+repo_url: https://github.com/karais89/ai-agent-book
+repo_name: karais89/ai-agent-book
 edit_uri: edit/main
 
 # The actual docs are assembled into `_web/` by `scripts/build_site.sh`
@@ -13,19 +13,20 @@ docs_dir: _web
 # `{#sec:foo}`, image `{height=55%}`) which Python-Markdown cannot parse.
 hooks:
   - scripts/mkdocs_pandoc_strip.py
+  - scripts/source_links.py
   - scripts/seo_meta.py
 
 theme:
   name: material
-  language: zh
+  language: ko
   # Custom overrides: injects the language-tab switcher into the header.
   custom_dir: overrides
   logo: assets/logo.svg
   favicon: assets/logo.svg
   # Brand colours — indigo accent matches the book cover and SVG figures.
   font:
-    text: Noto Sans SC, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif
-    code: JetBrains Mono, SFMono-Regular, Consolas, monospace
+    text: Noto Sans KR
+    code: JetBrains Mono
   icon:
     logo: material/robot-outline
     repo: fontawesome/brands/github
@@ -36,14 +37,14 @@ theme:
       accent: indigo
       toggle:
         icon: material/weather-night
-        name: 切换夜间模式
+        name: 다크 모드로 전환
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: indigo
       accent: indigo
       toggle:
         icon: material/weather-sunny
-        name: 切换日间模式
+        name: 라이트 모드로 전환
   features:
     # ── Navigation ──────────────────────────────────────────────
     # Two-sidebar layout: the left sidebar is the BOOK structure only
@@ -83,19 +84,8 @@ plugins:
   # Default Material plugins, made explicit so we can tune them.
   - search:
       lang:
-        - ja          # CJK-aware tokenizer; far better for Chinese than `en`
+        - ko
         - en
-        - ar
-  # Stamp each page with its git commit date — readers see "最后更新" trust signal.
-  - git-revision-date-localized:
-      enable_creation_date: true
-      enable_git_follow: false   # avoids noisy "First revision older than last" warnings
-      type: date
-      fallback_to_build_date: true
-  # Auto-generate Open Graph / Twitter card images so links look rich when
-  # shared to WeChat / Twitter / Slack.
-  - social:
-
 markdown_extensions:
   - admonition
   - attr_list
@@ -139,56 +129,48 @@ extra_css:
 # Each entry maps its prefix + suffix rules to rewrite URLs across editions.
 extra:
   languages:
-    # `prefix` and `suffix` apply to chapter prose (book*/chapterN[.suffix]/).
-    # `readmeSuffix` is the URL slug used for the per-language experiment
-    # index page (chapterN/README.<readmeSuffix>/), which mkdocs renders
-    # from the source file README.<suffix>.md.
-    zh:   { label: 中文,      prefix: book/,      default: true }
-    zhtw: { label: 正體中文,   prefix: book-zhtw/, suffix: .zhtw,  readmeSuffix: zh-TW }
-    en:   { label: English,   prefix: book-en/,                   readmeSuffix: en }
-    ru:   { label: Русский,    prefix: book-ru/,                   readmeSuffix: ru }
-    ta:   { label: தமிழ்,      prefix: book-ta/,   suffix: .ta,   readmeSuffix: ta }
-    vi:   { label: Tiếng Việt, prefix: book-vi/,   suffix: .vi,   readmeSuffix: vi }
-    ja:   { label: 日本語,     prefix: book-ja/,   suffix: .ja,   readmeSuffix: ja }
-    ar:   { label: العربية,    prefix: book-ar/,   suffix: .ar,   readmeSuffix: ar }
+    # Korean uses the stable default paths (`book/`, `chapterN/README.md`);
+    # English keeps its existing alternate paths.
+    ko: { label: 한국어, prefix: book/, default: true }
+    en: { label: English, prefix: book-en/, readmeSuffix: en }
 
 nav:
   # The left sidebar is a clean chapter tree. With navigation.indexes,
   # each chapter's index page (book/chapterN/index.md, promoted from
   # book/chapterN.md by scripts/build_site.sh) is attached to its section:
   # clicking the chapter title opens the prose directly, and the chevron
-  # expands the subtree to reveal "配套实验" (the experiment index).
-  - 首页: index.md
-  - 引言: book/introduction.md
-  - 第1章 Agent基础知识:
+  # 하위 트리를 펼쳐 "부속 실험" 인덱스를 표시한다.
+  - 홈: index.md
+  - 들어가며: book/introduction.md
+  - 1장 · AI 에이전트 기초:
       - book/chapter1/index.md
-      - 配套实验: chapter1/README.md
-  - 第2章 上下文工程:
+      - 실습: chapter1/README.md
+  - 2장 · 컨텍스트 엔지니어링:
       - book/chapter2/index.md
-      - 配套实验: chapter2/README.md
-  - 第3章 用户记忆和知识库:
+      - 실습: chapter2/README.md
+  - 3장 · 사용자 메모리와 지식 베이스:
       - book/chapter3/index.md
-      - 配套实验: chapter3/README.md
-  - 第4章 工具:
+      - 실습: chapter3/README.md
+  - 4장 · 도구:
       - book/chapter4/index.md
-      - 配套实验: chapter4/README.md
-  - 第5章 CodingAgent与代码生成:
+      - 실습: chapter4/README.md
+  - 5장 · 코딩 에이전트와 코드 생성:
       - book/chapter5/index.md
-      - 配套实验: chapter5/README.md
-  - 第6章 Agent的评估:
+      - 실습: chapter5/README.md
+  - 6장 · 에이전트 평가:
       - book/chapter6/index.md
-      - 配套实验: chapter6/README.md
-  - 第7章 模型后训练:
+      - 실습: chapter6/README.md
+  - 7장 · 모델 사후 학습:
       - book/chapter7/index.md
-      - 配套实验: chapter7/README.md
-  - 第8章 Agent的持续进化:
+      - 실습: chapter7/README.md
+  - 8장 · 에이전트의 지속적 진화:
       - book/chapter8/index.md
-      - 配套实验: chapter8/README.md
-  - 第9章 多模态与实时交互:
+      - 실습: chapter8/README.md
+  - 9장 · 멀티모달과 실시간 상호작용:
       - book/chapter9/index.md
-      - 配套实验: chapter9/README.md
-  - 第10章 多Agent协作:
+      - 실습: chapter9/README.md
+  - 10장 · 멀티 에이전트 협업:
       - book/chapter10/index.md
-      - 配套实验: chapter10/README.md
-  - 后记: book/afterword.md
-  - 思考题参考答案: book/reference-answers.md
+      - 실습: chapter10/README.md
+  - 맺음말: book/afterword.md
+  - 생각해 볼 문제 참고 답안: book/reference-answers.md

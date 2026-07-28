@@ -1,27 +1,48 @@
-name: i18n consistency check
+name: Korean-English consistency check
 
-# 防止主页或某章 README 改动后，其它语言版本跟不上而漂移。
-# 详见 scripts/check_i18n_consistency.py。
-#
-# 触发时机：
-#   1. 任何 PR / push 改动了 README、chapterN/、docs/<locale>/ 等 i18n 相关文件
-#   2. 手动 workflow_dispatch
+# 한국어 기본판과 영어판의 문서 구조가 어긋나지 않도록 검사한다.
+# 자세한 규칙은 scripts/check_i18n_consistency.py에 있다.
 
 on:
   pull_request:
     paths:
       - "README.md"
+      - "index.md"
+      - "mkdocs.yml"
+      - "build_epub.sh"
+      - "book/**"
+      - "book-en/**"
       - "docs/**"
       - "chapter*/README*.md"
+      - "scripts/build_site.sh"
+      - "scripts/seo_meta.py"
+      - "scripts/source_links.py"
+      - "extras/lang-switcher.js"
+      - "extras/nav-collapse.js"
+      - "overrides/**"
       - "scripts/check_i18n_consistency.py"
+      - "scripts/check_korean_translation.py"
       - ".github/workflows/i18n-check.yml"
   push:
     branches: [main]
     paths:
       - "README.md"
+      - "index.md"
+      - "mkdocs.yml"
+      - "build_epub.sh"
+      - "book/**"
+      - "book-en/**"
       - "docs/**"
       - "chapter*/README*.md"
+      - "scripts/build_site.sh"
+      - "scripts/seo_meta.py"
+      - "scripts/source_links.py"
+      - "extras/lang-switcher.js"
+      - "extras/nav-collapse.js"
+      - "overrides/**"
       - "scripts/check_i18n_consistency.py"
+      - "scripts/check_korean_translation.py"
+      - ".github/workflows/i18n-check.yml"
   workflow_dispatch: {}
 
 permissions:
@@ -38,4 +59,6 @@ jobs:
           python-version: "3.12"
 
       - name: Run i18n consistency check
-        run: python scripts/check_i18n_consistency.py
+        run: |
+          python scripts/check_i18n_consistency.py
+          python scripts/check_korean_translation.py
