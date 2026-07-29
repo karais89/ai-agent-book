@@ -23,6 +23,13 @@ for lang in book book-en; do
   cp -R "$ROOT/$lang" "$DEST/"
 done
 
+# The self-contained Korean beginner course. Unlike the full reference book,
+# these pages are intentionally short and interactive. Quiz/scenario JSON is
+# copied with extras/ below and retained by the file-type allowlist.
+if [ -d "$ROOT/course" ]; then
+  cp -R "$ROOT/course" "$DEST/"
+fi
+
 # Promote each chapter of the default (ko) edition to a directory index
 # (book/chapterN.md -> book/chapterN/index.md) so mkdocs.yml can use
 # navigation.indexes to attach the chapter prose to its nav section —
@@ -41,6 +48,16 @@ for n in 1 2 3 4 5 6 7 8 9 10; do
     "$src" > "$DEST/book/chapter$n/index.md"
   rm "$src"
 done
+
+# Course sources link to the real flat chapter files so the links also work
+# when reading Markdown directly on GitHub. The assembled MkDocs tree promotes
+# those files to directory indexes above, so rewrite only the disposable copy.
+if [ -d "$DEST/course" ]; then
+  find "$DEST/course" -type f -name '*.md' -print0 \
+    | xargs -0 sed -i.bak -E \
+        -e 's#\.\./book/(chapter([1-9]|10))\.md#../book/\1/index.md#g'
+  find "$DEST/course" -name '*.md.bak' -delete
+fi
 
 # The companion experiment directories (chapterN/). Each chapter has a
 # README.md (experiment index) plus one subfolder per experiment, also
@@ -77,6 +94,7 @@ find "$DEST" \( -type f -o -type l \) \
   ! -name '*.jpeg' \
   ! -name '*.js' \
   ! -name '*.css' \
+  ! -name '*.json' \
   ! -name '*.txt' \
   -delete
 

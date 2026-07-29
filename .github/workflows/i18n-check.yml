@@ -13,15 +13,19 @@ on:
       - "book/**"
       - "book-en/**"
       - "docs/**"
+      - "course/**"
       - "chapter*/README*.md"
       - "scripts/build_site.sh"
       - "scripts/seo_meta.py"
       - "scripts/source_links.py"
       - "extras/lang-switcher.js"
       - "extras/nav-collapse.js"
+      - "extras/course/**"
+      - "extras/agent-lab/**"
       - "overrides/**"
       - "scripts/check_i18n_consistency.py"
       - "scripts/check_korean_translation.py"
+      - "scripts/check_course.py"
       - ".github/workflows/i18n-check.yml"
   push:
     branches: [main]
@@ -33,15 +37,19 @@ on:
       - "book/**"
       - "book-en/**"
       - "docs/**"
+      - "course/**"
       - "chapter*/README*.md"
       - "scripts/build_site.sh"
       - "scripts/seo_meta.py"
       - "scripts/source_links.py"
       - "extras/lang-switcher.js"
       - "extras/nav-collapse.js"
+      - "extras/course/**"
+      - "extras/agent-lab/**"
       - "overrides/**"
       - "scripts/check_i18n_consistency.py"
       - "scripts/check_korean_translation.py"
+      - "scripts/check_course.py"
       - ".github/workflows/i18n-check.yml"
   workflow_dispatch: {}
 
@@ -62,3 +70,4 @@ jobs:
         run: |
           python scripts/check_i18n_consistency.py
           python scripts/check_korean_translation.py
+          python scripts/check_course.py

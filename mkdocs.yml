@@ -9,6 +9,15 @@ edit_uri: edit/main
 # (only the Markdown sources + images are copied; code/PDFs are left out).
 docs_dir: _web
 
+# Experiment READMEs link to runnable source files such as `.py` and
+# `.example`, while scripts/build_site.sh intentionally omits those files
+# from the lightweight reading site. Keep those legacy links visible without
+# failing a strict documentation build. The beginner course's own page, data,
+# quiz, and source paths are checked separately by scripts/check_course.py.
+validation:
+  links:
+    not_found: info
+
 # Strip Pandoc/LaTeX attributes the source Markdown uses (e.g. `{.unnumbered}`,
 # `{#sec:foo}`, image `{height=55%}`) which Python-Markdown cannot parse.
 hooks:
@@ -117,6 +126,15 @@ markdown_extensions:
 extra_javascript:
   - extras/lang-switcher.js
   - extras/nav-collapse.js
+  - extras/agent-lab/agent-trajectory.js
+  - extras/course/course-runtime.js
+  - extras/course/components/course-progress.js
+  - extras/course/components/course-quiz.js
+  - extras/course/components/context-budget.js
+  - extras/course/components/tool-loop.js
+  - extras/course/components/safety-gate.js
+  - extras/course/components/eval-dashboard.js
+  - extras/course/components/update-router.js
   - https://unpkg.com/mermaid@11/dist/mermaid.min.js
   - extras/mermaid-init.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
@@ -124,6 +142,7 @@ extra_javascript:
 extra_css:
   - extras/lang-switcher.css
   - extras/book-theme.css
+  - extras/course/course.css
 
 # Language definitions for the switcher tab bar.
 # Each entry maps its prefix + suffix rules to rewrite URLs across editions.
@@ -141,36 +160,49 @@ nav:
   # clicking the chapter title opens the prose directly, and the chevron
   # 하위 트리를 펼쳐 "부속 실험" 인덱스를 표시한다.
   - 홈: index.md
-  - 들어가며: book/introduction.md
-  - 1장 · AI 에이전트 기초:
-      - book/chapter1/index.md
-      - 실습: chapter1/README.md
-  - 2장 · 컨텍스트 엔지니어링:
-      - book/chapter2/index.md
-      - 실습: chapter2/README.md
-  - 3장 · 사용자 메모리와 지식 베이스:
-      - book/chapter3/index.md
-      - 실습: chapter3/README.md
-  - 4장 · 도구:
-      - book/chapter4/index.md
-      - 실습: chapter4/README.md
-  - 5장 · 코딩 에이전트와 코드 생성:
-      - book/chapter5/index.md
-      - 실습: chapter5/README.md
-  - 6장 · 에이전트 평가:
-      - book/chapter6/index.md
-      - 실습: chapter6/README.md
-  - 7장 · 모델 사후 학습:
-      - book/chapter7/index.md
-      - 실습: chapter7/README.md
-  - 8장 · 에이전트의 지속적 진화:
-      - book/chapter8/index.md
-      - 실습: chapter8/README.md
-  - 9장 · 멀티모달과 실시간 상호작용:
-      - book/chapter9/index.md
-      - 실습: chapter9/README.md
-  - 10장 · 멀티 에이전트 협업:
-      - book/chapter10/index.md
-      - 실습: chapter10/README.md
-  - 맺음말: book/afterword.md
-  - 생각해 볼 문제 참고 답안: book/reference-answers.md
+  - 입문 코스:
+      - course/index.md
+      - 10분 핵심: course/00-overview.md
+      - 1 · 에이전트와 실행 루프: course/01-agent.md
+      - 2 · 올바른 컨텍스트: course/02-context.md
+      - 3 · 안전하고 이해하기 쉬운 도구: course/03-tools.md
+      - 4 · 데모를 안전한 시스템으로: course/04-harness.md
+      - 5 · 평가 없이는 개선도 없다: course/05-evaluation.md
+      - 6 · 운영 경험으로 개선하기: course/06-improvement.md
+      - 누적 프로젝트: course/project.md
+      - 용어집: course/glossary.md
+      - 과정 완료: course/completion.md
+  - 전체 원문과 실험:
+      - 들어가며: book/introduction.md
+      - 1장 · AI 에이전트 기초:
+          - book/chapter1/index.md
+          - 실습: chapter1/README.md
+      - 2장 · 컨텍스트 엔지니어링:
+          - book/chapter2/index.md
+          - 실습: chapter2/README.md
+      - 3장 · 사용자 메모리와 지식 베이스:
+          - book/chapter3/index.md
+          - 실습: chapter3/README.md
+      - 4장 · 도구:
+          - book/chapter4/index.md
+          - 실습: chapter4/README.md
+      - 5장 · 코딩 에이전트와 코드 생성:
+          - book/chapter5/index.md
+          - 실습: chapter5/README.md
+      - 6장 · 에이전트 평가:
+          - book/chapter6/index.md
+          - 실습: chapter6/README.md
+      - 7장 · 모델 사후 학습:
+          - book/chapter7/index.md
+          - 실습: chapter7/README.md
+      - 8장 · 에이전트의 지속적 진화:
+          - book/chapter8/index.md
+          - 실습: chapter8/README.md
+      - 9장 · 멀티모달과 실시간 상호작용:
+          - book/chapter9/index.md
+          - 실습: chapter9/README.md
+      - 10장 · 멀티 에이전트 협업:
+          - book/chapter10/index.md
+          - 실습: chapter10/README.md
+      - 맺음말: book/afterword.md
+      - 생각해 볼 문제 참고 답안: book/reference-answers.md

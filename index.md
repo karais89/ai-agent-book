@@ -1,6 +1,6 @@
 ---
 title: AI 에이전트 깊이 이해하기
-description: 에이전트 = LLM + 컨텍스트 + 도구라는 핵심 공식에서 출발해 AI 에이전트의 원리부터 엔지니어링 실무까지 10개 장으로 설명하는 오픈 소스 기술서입니다. 본문, 그림, 93개 실습을 모두 공개합니다.
+description: 10분 핵심과 6개 입문 모듈로 AI 에이전트를 먼저 익힌 뒤, 10개 장의 원문과 93개 실습으로 깊이 탐구하는 오픈 소스 기술서입니다.
 ---
 
 <div class="hero" markdown>
@@ -17,10 +17,34 @@ description: 에이전트 = LLM + 컨텍스트 + 도구라는 핵심 공식에�
 
 <div class="cta-row" markdown>
 
+🚀 [입문 코스 시작](course/){.cta}
 📥 [한국어 PDF](https://github.com/karais89/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ko.pdf){.cta}
 📚 [한국어 EPUB](https://github.com/karais89/ai-agent-book/releases/download/latest/AI-Agents-in-Depth-ko.epub){.cta}
 
 </div>
+
+</div>
+
+---
+
+## 어디서 시작할까요?
+
+<div class="exp-grid" markdown>
+
+<a class="exp-card" href="course/00-overview/">
+<span class="exp-title">⚡ 10분 핵심</span>
+<span class="exp-desc">모델·컨텍스트·도구·하네스·평가의 관계를 한 번에 파악합니다.</span>
+</a>
+
+<a class="exp-card" href="course/">
+<span class="exp-title">🚀 처음 배우는 AI 에이전트</span>
+<span class="exp-desc">6개 모듈과 하나의 환불 에이전트로 약 3~4시간 동안 핵심을 체험합니다.</span>
+</a>
+
+<a class="exp-card" href="book/introduction/">
+<span class="exp-title">📚 전체 원문과 실험</span>
+<span class="exp-desc">이미 기본기를 갖춘 독자를 위한 10개 장, 93개 실험, 최신 연구 참고 자료입니다.</span>
+</a>
 
 </div>
 

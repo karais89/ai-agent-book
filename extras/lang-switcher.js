@@ -27,6 +27,12 @@
     // When on a non-default language, sidebar text is replaced from this map.
     var NAV_I18N = {
       "홈": { en: "Home" },
+      "입문 코스": { en: "Beginner Course (Korean)" },
+      "10분 핵심": { en: "10-minute Overview (Korean)" },
+      "누적 프로젝트": { en: "Running Project (Korean)" },
+      "용어집": { en: "Glossary (Korean)" },
+      "과정 완료": { en: "Course Completion (Korean)" },
+      "전체 원문과 실험": { en: "Full Book & Experiments" },
       "들어가며": { en: "Introduction" },
       "1장 · AI 에이전트 기초": { en: "Chapter 1 · Getting Started with AI Agents" },
       "2장 · 컨텍스트 엔지니어링": { en: "Chapter 2 · Context Engineering" },
@@ -122,6 +128,12 @@
       // Match against prefix with trailing slash stripped, so both
       // "/book-en/" and "/book-en" map to "en".
       var p = path.replace(/\/$/, "");
+      if (/^\/?course(?:\/|$)/.test(p)) {
+        for (var k in cfg) {
+          if (cfg.hasOwnProperty(k) && cfg[k].default) return k;
+        }
+        return "ko";
+      }
       var codes = Object.keys(cfg).sort(function (a, b) {
         return cfg[b].prefix.length - cfg[a].prefix.length;
       });
@@ -263,6 +275,7 @@
       var candidates = [
         p.indexOf("book-en/"),
         p.indexOf("book/"),
+        p.indexOf("course/"),
         p.search(/chapter\d+\//),
       ].filter(function (value) { return value >= 0; });
       var idx = candidates.length ? Math.min.apply(Math, candidates) : -1;
@@ -654,6 +667,10 @@
               var linkPath = u.pathname;
               if (linkPath.indexOf(base) === 0) {
                 var linkRel = "/" + linkPath.slice(base.length).replace(/^\//, "");
+                // The beginner course is Korean-only. Keep its links intact
+                // when translating the English book sidebar instead of
+                // rewriting every course page to the English introduction.
+                if (/^\/course(?:\/|$)/.test(linkRel)) continue;
                 var linkLang = /^\/chapter\d+\/?$/.test(linkRel)
                   ? defCode
                   : detectLang(linkRel);
@@ -726,6 +743,12 @@
       var activeLang = detectLang(cleanPath);
       applyDocumentLocale(activeLang);
       if (!target || target === activeLang) return;
+      if (/^\/course(?:\/|$)/.test(cleanPath) && target === "en") {
+        var englishIntro =
+          basePath.replace(/\/?$/, "/") + cfg.en.prefix + "introduction/";
+        window.location.replace(new URL(englishIntro, location.origin).href);
+        return;
+      }
       var rel = translatePath(cleanPath, activeLang, target);
       if (!rel) return;
       var targetPath =

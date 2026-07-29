@@ -1,0 +1,195 @@
+{
+  "id": "ai-agent-beginner-ko-v1",
+  "title": "AI 에이전트 입문 코스",
+  "version": 1,
+  "locale": "ko",
+  "storage_key": "ai-agent-book.course.v1",
+  "scenario": "extras/course/data/scenarios/mori-shop.json",
+  "overview": {
+    "id": "00-overview",
+    "title": "10분 핵심 개요",
+    "path": "00-overview/",
+    "page": "course/00-overview.md",
+    "estimated_minutes": 10,
+    "objectives": [
+      "에이전트 시스템의 네 가지 구성 요소를 한 문장씩 설명한다.",
+      "입문 코스와 전체 원문 중 자신에게 맞는 경로를 선택한다."
+    ],
+    "checkpoint": "학습 경로를 선택하고 1모듈로 이동한다.",
+    "sources": [
+      "book/introduction.md",
+      "book/chapter1.md"
+    ]
+  },
+  "modules": [
+    {
+      "id": "01-agent",
+      "title": "에이전트와 실행 루프",
+      "path": "01-agent/",
+      "page": "course/01-agent.md",
+      "estimated_minutes": 30,
+      "objectives": [
+        "챗봇, 결정론적 워크플로, 에이전트를 구분한다.",
+        "도구 요청, 실행, 관찰, 다음 결정의 순서를 실행 흔적에서 찾는다."
+      ],
+      "concepts": [
+        "모델",
+        "컨텍스트",
+        "도구",
+        "실행 루프",
+        "종료 조건"
+      ],
+      "interaction": {
+        "tag": "agent-trajectory",
+        "script": "extras/agent-lab/agent-trajectory.js",
+        "data": "extras/course/data/scenarios/01-agent-trajectory.json"
+      },
+      "quiz": "extras/course/data/quizzes/01-agent.json",
+      "checkpoint": "완료 선언과 외부 상태 검증을 구분한다.",
+      "sources": [
+        "book/chapter1.md",
+        "book/chapter2.md"
+      ]
+    },
+    {
+      "id": "02-context",
+      "title": "올바른 컨텍스트",
+      "path": "02-context/",
+      "page": "course/02-context.md",
+      "estimated_minutes": 30,
+      "objectives": [
+        "현재 결정에 필요한 최소 충분 컨텍스트를 고른다.",
+        "외부 데이터와 시스템 지시를 구분한다."
+      ],
+      "concepts": [
+        "정적 지시",
+        "동적 상태",
+        "외부 자료",
+        "최소 충분 정보",
+        "프롬프트 인젝션"
+      ],
+      "interaction": {
+        "tag": "context-budget",
+        "script": "extras/course/components/context-budget.js"
+      },
+      "quiz": "extras/course/data/quizzes/02-context.json",
+      "checkpoint": "컨텍스트 실패와 모델 능력 실패를 구분한다.",
+      "sources": [
+        "book/chapter2.md"
+      ]
+    },
+    {
+      "id": "03-tools",
+      "title": "안전하고 이해하기 쉬운 도구",
+      "path": "03-tools/",
+      "page": "course/03-tools.md",
+      "estimated_minutes": 30,
+      "objectives": [
+        "조회 도구와 상태 변경 도구를 위험도에 따라 구분한다.",
+        "현재 관찰에 맞는 다음 도구 호출을 선택한다."
+      ],
+      "concepts": [
+        "인식 도구",
+        "실행 도구",
+        "도구 계약",
+        "관찰",
+        "책임 분리"
+      ],
+      "interaction": {
+        "tag": "tool-loop",
+        "script": "extras/course/components/tool-loop.js"
+      },
+      "quiz": "extras/course/data/quizzes/03-tools.json",
+      "checkpoint": "모델의 도구 요청과 서버의 도구 실행을 구분한다.",
+      "sources": [
+        "book/chapter2.md",
+        "book/chapter4.md"
+      ]
+    },
+    {
+      "id": "04-harness",
+      "title": "데모를 안전한 시스템으로 바꾸기",
+      "path": "04-harness/",
+      "page": "course/04-harness.md",
+      "estimated_minutes": 35,
+      "objectives": [
+        "권한, 사용자 확인, 멱등성, 사후 검증을 상태 변경 경로에 적용한다.",
+        "장애마다 재시도, 재조회, 중단, 이관 중 안전한 복구를 선택한다."
+      ],
+      "concepts": [
+        "하네스",
+        "멱등성",
+        "불변조건",
+        "사후 검증",
+        "사람의 승인"
+      ],
+      "interaction": {
+        "tag": "safety-gate",
+        "script": "extras/course/components/safety-gate.js"
+      },
+      "quiz": "extras/course/data/quizzes/04-harness.json",
+      "checkpoint": "프롬프트와 서버 강제 규칙의 책임을 구분한다.",
+      "sources": [
+        "book/chapter1.md",
+        "book/chapter4.md",
+        "book/chapter5.md"
+      ]
+    },
+    {
+      "id": "05-evaluation",
+      "title": "평가 없이는 개선도 없다",
+      "path": "05-evaluation/",
+      "page": "course/05-evaluation.md",
+      "estimated_minutes": 35,
+      "objectives": [
+        "결과와 실행 궤적을 함께 평가하는 고정 평가 세트를 만든다.",
+        "전체 성공률과 필수 안전 게이트를 함께 보고 출시 여부를 판단한다."
+      ],
+      "concepts": [
+        "고정 평가 세트",
+        "실행 궤적",
+        "안전 게이트",
+        "회귀",
+        "출시 판단"
+      ],
+      "interaction": {
+        "tag": "eval-dashboard",
+        "script": "extras/course/components/eval-dashboard.js"
+      },
+      "quiz": "extras/course/data/quizzes/05-evaluation.json",
+      "checkpoint": "필수 안전 실패가 한 건이라도 있으면 출시를 보류한다.",
+      "sources": [
+        "book/chapter6.md"
+      ]
+    },
+    {
+      "id": "06-improvement",
+      "title": "운영 경험으로 개선하기",
+      "path": "06-improvement/",
+      "page": "course/06-improvement.md",
+      "estimated_minutes": 35,
+      "objectives": [
+        "실패 원인에 따라 지식, 지침, 프로그램, 모델 중 수정 위치를 선택한다.",
+        "후보 변경을 고정 평가와 롤백 가능한 출시 절차로 검증한다."
+      ],
+      "concepts": [
+        "지식 업데이트",
+        "지침 업데이트",
+        "프로그램 업데이트",
+        "모델 업데이트",
+        "롤백"
+      ],
+      "interaction": {
+        "tag": "update-router",
+        "script": "extras/course/components/update-router.js"
+      },
+      "quiz": "extras/course/data/quizzes/06-improvement.json",
+      "checkpoint": "가장 작은 수정부터 적용하고 회귀 평가를 통과시킨다.",
+      "sources": [
+        "book/chapter7.md",
+        "book/chapter8.md",
+        "book/chapter10.md"
+      ]
+    }
+  ]
+}

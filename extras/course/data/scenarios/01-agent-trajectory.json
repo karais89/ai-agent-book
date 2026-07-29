@@ -1,0 +1,60 @@
+{
+  "experiment": "course/mori-shop/read-only-loop",
+  "title": "Mori Shop 환불 요청의 첫 실행 루프",
+  "model": "deterministic-course-simulator",
+  "task": "지난주 받은 블루투스 이어폰을 환불해 줘.",
+  "condition": "module-01-read-only-tools",
+  "outcome": "success",
+  "tags": [
+    "course",
+    "react",
+    "read-only"
+  ],
+  "recorded_at": "2026-07-29T00:00:00Z",
+  "steps": [
+    {
+      "iteration": 1,
+      "type": "thought",
+      "content": "결정 근거: 요청만으로는 대상 주문을 특정할 수 없으므로 먼저 고객의 최근 주문을 조회한다."
+    },
+    {
+      "iteration": 1,
+      "type": "action",
+      "tool": "find_orders",
+      "args": {
+        "customer_id": "C-102",
+        "date_range": "2026-07-19/2026-07-29"
+      }
+    },
+    {
+      "iteration": 1,
+      "type": "observation",
+      "tool": "find_orders",
+      "content": "최근 배송 주문 1건: O-1042, 블루투스 이어폰, 89,000원."
+    },
+    {
+      "iteration": 2,
+      "type": "thought",
+      "content": "결정 근거: 후보 주문의 상품과 배송 상태를 확인해야 다음 질문을 정할 수 있다."
+    },
+    {
+      "iteration": 2,
+      "type": "action",
+      "tool": "get_order",
+      "args": {
+        "order_id": "O-1042"
+      }
+    },
+    {
+      "iteration": 2,
+      "type": "observation",
+      "tool": "get_order",
+      "content": "O-1042는 블루투스 이어폰 주문이며 5일 전에 배송 완료되었다. 환불 사유는 아직 없다."
+    },
+    {
+      "iteration": 3,
+      "type": "answer",
+      "content": "주문 O-1042의 블루투스 이어폰을 확인했습니다. 적용할 환불 정책을 판단하려면 환불 사유가 필요합니다. 상품에 어떤 문제가 있었나요? 아직 환불 생성 도구는 호출하지 않았습니다."
+    }
+  ]
+}
